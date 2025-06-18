@@ -1,0 +1,1 @@
+print("Today I learn about introduction to python programming \n Who discover python when it was created \n What is the difference between python 2 and python 3 \n what is the perpose of python \n whats the trends going on in the market \n which application can be devoloped through python")

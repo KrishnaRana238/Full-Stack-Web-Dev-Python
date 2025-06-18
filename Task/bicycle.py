@@ -1,0 +1,7 @@
+name=input("Enter your name: ")
+age=int(input("Enter your age: "))
+bycycle = input("Do you have a bicycle? (yes/no): ")
+print(bycycle)
+would = input("Would you like to ride a bicycle? (yes/no): ")
+print(would)
+print("Hello, ", name + "! Nice to meet you.")
