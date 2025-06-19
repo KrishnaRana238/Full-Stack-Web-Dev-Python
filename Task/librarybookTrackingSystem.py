@@ -75,7 +75,23 @@ def borrow_book(member, title):
     print(f"{member} borrowed '{title}'.")
 borrow_book("Alice", "1984")
 borrow_book("Bob", "The Great Gatsby")
-        
+
+def return_book(member,title):
+    if member not in members or title not in members[member]:
+        print(f"{member} has not borrowed '{title}'.")
+        return
+    members[member].remove(title)
+    books[title]['available'] += 1
+    print(f"{member} returned '{title}'.")
+return_book("Alice", "1984")
+
+def check_borrowed_books(member):
+    if member not in members or len(members[member]) == 0:
+        print(f"{member} has not borrowed any books.")
+        return
+    print(f"{member} has borrowed the following books:")
+    returnmembers[member]
+check_borrowed_books("Alice")
     
 
 # def borrow_book(member_name, title):
