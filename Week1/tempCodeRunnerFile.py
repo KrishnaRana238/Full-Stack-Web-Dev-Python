@@ -1,2 +1,2 @@
-data.clear()  # Clears the set
-# print(data)  
+print(myfamily["child1"]["name"])  
+# print(myfamily)
