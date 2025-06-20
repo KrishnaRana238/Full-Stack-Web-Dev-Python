@@ -1,2 +1,2 @@
-print(myfamily["child1"]["name"])  
-# print(myfamily)
+d1 = Dog("Buddy", 3, "Golden Retriever")
+d1.speak()  
