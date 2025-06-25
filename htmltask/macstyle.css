@@ -1,0 +1,47 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f1e5; /* A light color similar to the card background */
+}
+
+.gift-card {
+    background-color: #ffcc00; /* Yellow background */
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    width: 50px; /* Adjust the size as needed */
+    margin-right: 20px;
+}
+
+.gift-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.meal {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.hamburger, .fries, .drink {
+    width: 60px; /* Adjust the size as needed */
+}
+
+.gift-info h2 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.gift-info h2 sup {
+    font-size: 0.5em;
+}

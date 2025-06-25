@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+                    form {
+                        max-width: 400px;
+                        margin: 30px auto;
+                        padding: 20px;
+                        background: #f9f9f9;
+                        border-radius: 8px;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+                    }
+                    fieldset {
+                        border: none;
+                        padding: 0;
+                        margin: 0;
+                    }
+                    legend {
+                        font-size: 1.3em;
+                        font-weight: bold;
+                        margin-bottom: 15px;
+                        color: #333;
+                        align-items: center;
+                    }
+                    label {
+                        display: block;
+                        margin-top: 15px;
+                        margin-bottom: 5px;
+                        font-weight: 500;
+                        color: #222;
+                    }
+                    input[type="text"],
+                    input[type="email"],
+                    textarea {
+                        width: 100%;
+                        padding: 8px 10px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        font-size: 1em;
+                        box-sizing: border-box;
+                        margin-bottom: 10px;
+                        transition: border 0.2s;
+                    }
+                    input[type="text"]:focus,
+                    input[type="email"]:focus,
+                    textarea:focus {
+                        border-color: #0078d7;
+                        outline: none;
+                    }
+                    button[type="submit"] {
+                        background: #0078d7;
+                        color: #fff;
+                        border: none;
+                        padding: 10px 20px;
+                        border-radius: 4px;
+                        font-size: 1em;
+                        cursor: pointer;
+                        margin-top: 10px;
+                        transition: background 0.2s;
+                    }
+                    button[type="submit"]:hover {
+                        background: #005fa3;
+                    }
+                    header {
+                        text-align: center;
+                        margin-bottom: 20px;
+                    }
+                    header h1 {
+                        font-size: 2em;
+                        color: #333;
+                    }
+                    header p {
+                        font-size: 1.2em;
+                        color: #666;
+                    }
+                    select {
+                        width: 100%;
+                        padding: 8px 10px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        font-size: 1em;
+                        box-sizing: border-box;
+                        margin-top: 10px;
+                        transition: border 0.2s;
+                    }
+                </style>
+
+</head>
+<body>
+    <header>
+        <h1>Contact Us</h1>
+        <p>We would love to hear from you</p>
+    </header>
+
+    <main>
+        <form action="/lists.html" method="post">
+            <fieldset>
+                <legend>Send us a Message</legend>
+                
+                <label for="name">Full Name</label>
+                <input type="text" name="name" id="name" placeholder = "Enter your name" required><br>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Enter your email" required><br>
+                <label for="message">Message</label>
+                <textarea name="message" id="message" placeholder="Enter your message" rows="4" required></textarea><br>
+                <button type="submit">Submit</button>
+                <label for="dropdown">Contact Preference</label>
+                <br>
+                <select name="dropdown" id="dropdown">
+                    <option value="option1">Want to contact</option>
+                    <option value="option2">Don't want to contact</option>
+                    <option value="option3">Give me your number</option>
+                    <option value="option4">Can i take your number</option>
+                </select>
+            </fieldset>
+        </form>
+    </main>
+</body>
+</html>

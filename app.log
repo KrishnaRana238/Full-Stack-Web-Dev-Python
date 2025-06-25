@@ -1,0 +1,48 @@
+2025-06-23 13:22:51,074-ERROR-Number cannot be divided by zero.
+Traceback (most recent call last):
+  File "/Users/krishnarana/Desktop/Web Development/Placement LPU/File Handling/exceptionhandling.py", line 54, in divide
+    result = a/b
+             ~^~
+ZeroDivisionError: division by zero
+2025-06-23 13:22:51,077-ERROR-Invalid input type: unsupported operand type(s) for /: 'int' and 'str'
+Traceback (most recent call last):
+  File "/Users/krishnarana/Desktop/Web Development/Placement LPU/File Handling/exceptionhandling.py", line 54, in divide
+    result = a/b
+             ~^~
+TypeError: unsupported operand type(s) for /: 'int' and 'str'
+2025-06-23 13:22:56,379-ERROR-Number cannot be divided by zero.
+Traceback (most recent call last):
+  File "/Users/krishnarana/Desktop/Web Development/Placement LPU/File Handling/exceptionhandling.py", line 54, in divide
+    result = a/b
+             ~^~
+ZeroDivisionError: division by zero
+2025-06-23 13:22:56,380-ERROR-Invalid input type: unsupported operand type(s) for /: 'int' and 'str'
+Traceback (most recent call last):
+  File "/Users/krishnarana/Desktop/Web Development/Placement LPU/File Handling/exceptionhandling.py", line 54, in divide
+    result = a/b
+             ~^~
+TypeError: unsupported operand type(s) for /: 'int' and 'str'
+2025-06-23 13:23:12,272-ERROR-Number cannot be divided by zero.
+Traceback (most recent call last):
+  File "/Users/krishnarana/Desktop/Web Development/Placement LPU/File Handling/exceptionhandling.py", line 54, in divide
+    result = a/b
+             ~^~
+ZeroDivisionError: division by zero
+2025-06-23 13:23:12,274-ERROR-Invalid input type: unsupported operand type(s) for /: 'int' and 'str'
+Traceback (most recent call last):
+  File "/Users/krishnarana/Desktop/Web Development/Placement LPU/File Handling/exceptionhandling.py", line 54, in divide
+    result = a/b
+             ~^~
+TypeError: unsupported operand type(s) for /: 'int' and 'str'
+2025-06-23 13:23:29,930-ERROR-Number cannot be divided by zero.
+Traceback (most recent call last):
+  File "/Users/krishnarana/Desktop/Web Development/Placement LPU/File Handling/exceptionhandling.py", line 54, in divide
+    result = a/b
+             ~^~
+ZeroDivisionError: division by zero
+2025-06-23 13:23:29,932-ERROR-Invalid input type: unsupported operand type(s) for /: 'int' and 'str'
+Traceback (most recent call last):
+  File "/Users/krishnarana/Desktop/Web Development/Placement LPU/File Handling/exceptionhandling.py", line 54, in divide
+    result = a/b
+             ~^~
+TypeError: unsupported operand type(s) for /: 'int' and 'str'

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-size: auto;
+            background-position: center;
+            height: 60px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            color: white;
+            padding: 18px 24px;
+            background-color: #b70000;
+        }
+
+        header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 24px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav ul li a:hover {
+            color: #000000;
+            transform: scale(1.1);
+        }
+
+        main {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            padding: 40px 16px 16px 16px;
+        }
+
+        .flex_item {
+            margin-top: 32px;
+            background: #fff;
+            color: #b70000;
+            padding: 18px 36px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
+            display: inline-block;
+        }
+
+        .flex_item:hover {
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 8px 24px rgba(232,0,0,0.25);
+            background: #e80000;
+            color: #fff;
+        }
+
+        footer {
+            background: #b70000;
+            color: #fff;
+            text-align: center;
+            padding: 18px 0 12px 0;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        footer a {
+            color: #e80000;
+            text-decoration: none;
+            margin: 0 4px;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 1024px) {
+            header {
+                padding: 14px 20px;
+                height: 56px;
+            }
+            nav ul {
+                gap: 18px;
+            }
+            main {
+                padding: 32px 12px 12px 12px;
+            }
+            .flex_item {
+                padding: 16px 28px;
+                font-size: 1.05rem;
+            }
+        }
+
+        /* Redesigned mobile layout */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: stretch;
+                height: auto;
+                padding: 10px 8px;
+            }
+            header h3 {
+                font-size: 1.1rem;
+                margin-bottom: 8px;
+                letter-spacing: 1px;
+                text-align: center;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                width: 100%;
+                background: none;
+                border-radius: 0;
+                padding: 0;
+                box-shadow: none;
+            }
+            nav ul li {
+                width: 100%;
+                border-bottom: 1px solid #fff2;
+            }
+            nav ul li:last-child {
+                border-bottom: none;
+            }
+            nav ul li a {
+                display: block;
+                padding: 14px 0;
+                border-radius: 0;
+                text-align: center;
+                background: #b70000;
+                color: #fff;
+                font-size: 1.05rem;
+                transition: background 0.2s, color 0.2s;
+            }
+            nav ul li a:hover {
+                background: #fff;
+                color: #b70000;
+            }
+            main {
+                padding: 18px 4px 60px 4px;
+                align-items: stretch;
+                text-align: center;
+            }
+            .flex_item {
+                width: 100%;
+                text-align: center;
+                padding: 14px 0;
+                font-size: 1rem;
+                border-radius: 10px;
+                margin-top: 24px;
+            }
+            footer {
+                font-size: 0.97rem;
+                padding: 14px 0 10px 0;
+                position: static;
+                width: 100%;
+                margin-top: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 6px 2px;
+            }
+            header h3 {
+                font-size: 1rem;
+                letter-spacing: 0.5px;
+            }
+            nav ul li a {
+                font-size: 0.98rem;
+                padding: 12px 0;
+            }
+            main {
+                padding: 8px 1px 48px 1px;
+            }
+            .flex_item {
+                font-size: 0.95rem;
+                padding: 12px 0;
+                border-radius: 8px;
+            }
+            footer {
+                font-size: 0.92rem;
+                padding: 10px 0 8px 0;
+                margin-top: 16px;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h3>MY BRAND</h3>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">Feature</a></li>
+                <li><a href="services.html">Pricing</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Welcome to My Website</h1>
+        <p>This is aa simple HTML page with a header and navigation.</p>
+        <p>Feel free to explore the links in the navigation menu.</p>
+        <div class="flex_item">Get Started</div>
+    </main>
+    <footer>
+        <p>&copy; 2023 My Brand. All rights reserved.</p>
+        
+    </footer>
+</body>
+</html>

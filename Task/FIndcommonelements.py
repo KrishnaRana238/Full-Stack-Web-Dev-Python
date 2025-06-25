@@ -6,3 +6,5 @@ newsletter2 = {"bob", "dave", "eve"}
 
 newsletter3 = newsletter1.intersection(newsletter2)  
 print(newsletter3)  
+
+

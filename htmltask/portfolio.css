@@ -1,0 +1,198 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body, html {
+    margin: 0;
+    font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(120deg, #232526, #414345);
+    color: #fff;
+    min-height: 100vh;
+}
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: rgba(20, 20, 20, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+}
+nav a:hover, nav a.active {
+    background: #ffcc00;
+    color: #232526;
+}
+
+/* Section base styles for future use */
+section {
+    padding: 80px 20px 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    text-align: center;
+    margin-top: 60px;
+}
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+.hero .subtitle {
+    font-size: 1.5rem;
+    color: #ffcc00;
+    margin-bottom: 32px;
+}
+.cta-btn {
+    display: inline-block;
+    background: #ffcc00;
+    color: #232526;
+    padding: 12px 32px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.cta-btn:hover {
+    background: #fff;
+    color: #232526;
+    transform: translateY(-2px) scale(1.04);
+}
+.about, .projects, .skills, .contact {
+    margin-top: 40px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 40px 24px;
+}
+.about h2, .projects h2, .skills h2, .contact h2 {
+    color: #ffcc00;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 700;
+}
+.skills:hover h2, .projects:hover h2, .contact:hover h2 {
+    color: #fff;
+}
+.skills-list:hover {
+    color: #ffffff;
+}
+.project-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+}
+.project-card {
+    background: rgba(255,255,255,0.06);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    padding: 24px;
+    min-width: 220px;
+    max-width: 320px;
+    flex: 1 1 220px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.project-card:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+}
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.skills-list li {
+    background: #ffcc00;
+    color: #232526;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+.contact-form input, .contact-form textarea {
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    font-size: 1rem;
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    resize: none;
+}
+.contact-form button {
+    background: #ffcc00;
+    color: #232526;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.contact-form button:hover {
+    background: #fff;
+    color: #232526;
+}
+footer {
+    text-align: center;
+    padding: 32px 0 16px 0;
+    color: #aaa;
+    font-size: 1rem;
+    margin-top: 40px;
+}
+@media (max-width: 700px) {
+    nav ul {
+        gap: 16px;
+    }
+    .hero h1 {
+        font-size: 2.1rem;
+    }
+    section {
+        padding: 80px 8px 40px 8px;
+    }
+    .about, .projects, .skills, .contact {
+        padding: 24px 8px;
+    }
+    .project-list {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
