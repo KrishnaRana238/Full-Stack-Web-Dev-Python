@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function greet(name){
+            return "Hello, " + name + "!";
+        }
+        document.write(greet("World"));
+        document.write("<br>");
+
+
+        //function expression
+        const sayhello = function(name) {
+            return "Hello, " + name + "!";
+        };
+        document.write(sayhello("Krishna"));
+        document.write("<br>");
+
+        //arrow function   
+        let mul = (a,b)=>a*b;
+        document.write(mul(5,6));
+        document.write("<br>");
+
+        //invoking a function
+        const message = greet("Krishna");
+        document.write(message);
+        document.write("<br>");
+    </script>
+</body>
+</html>

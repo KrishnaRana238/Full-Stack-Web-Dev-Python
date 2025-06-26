@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | LearnOnline</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .about-hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f5f7fa;
+            padding: 60px 10%;
+        }
+        .about-hero-content {
+            max-width: 600px;
+        }
+        .about-hero-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .about-hero-content p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+        .about-team-section {
+            padding: 60px 10%;
+            background: #fff;
+        }
+        .about-team-section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+        .team-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+        }
+        .team-card {
+            background: #f5f7fa;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+            padding: 32px 24px;
+            width: 270px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .team-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        .team-card img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 18px;
+            border: 3px solid #4f8cff;
+        }
+        .team-card h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.2rem;
+        }
+        .team-card .role {
+            color: #4f8cff;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        .team-card p {
+            font-size: 0.98rem;
+            color: #555;
+        }
+        @media (max-width: 900px) {
+            .about-hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 5%;
+            }
+            .about-hero img {
+                margin-top: 30px;
+            }
+            .about-team-section {
+                padding: 40px 5%;
+            }
+            .team-cards {
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <h1>LearnOnline</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="applied.html">Applied Courses</a></li>
+            <li><a href="about.html" class="active">About Us</a></li>
+            <li><a href="settings.html">Settings</a></li>
+        </ul>
+        <div class="login-btn">
+            <a href="login.html">Login</a>
+        </div>
+    </nav>
+
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <h2>About LearnOnline</h2>
+            <p>
+                LearnOnline is dedicated to making quality education accessible to everyone, everywhere. Our mission is to empower learners with flexible, engaging, and industry-relevant courses, supported by a passionate team of educators and technologists.
+            </p>
+        </div>
+        <img src="images/about-hero.svg" alt="About LearnOnline" style="width:340px;max-width:100%;">
+    </section>
+
+    <section class="about-team-section">
+        <h2>Meet Our Team</h2>
+        <div class="team-cards">
+            <!-- CEO -->
+            <div class="team-card">
+                <img src="images/ceo.jpg" alt="CEO">
+                <h3>Krishna Rana</h3>
+                <div class="role">Chief Executive Officer</div>
+                <p>Visionary leader with a passion for democratizing education. Krishna drives our mission and inspires the team to innovate every day.</p>
+            </div>
+            <!-- CTO -->
+            <div class="team-card">
+                <img src="images/cto.jpg" alt="CTO">
+                <h3>Anant Tyagi</h3>
+                <div class="role">Chief Technology Officer</div>
+                <p>Tech enthusiast and architect of our platform. Anant ensures LearnOnline is fast, secure, and always evolving.</p>
+            </div>
+            <!-- Employee 1 -->
+            <div class="team-card">
+                <img src="images/employee1.jpg" alt="Product Manager">
+                <h3>Subhajit Pati</h3>
+                <div class="role">Product Manager</div>
+                <p>Bridging the gap between learners and technology, Subhajit crafts seamless learning experiences for all users.</p>
+            </div>
+            <!-- Employee 2 -->
+            <div class="team-card">
+                <img src="images/employee2.jpg" alt="Lead Instructor">
+                <h3>Jivan Jyoti Rout</h3>
+                <div class="role">Lead Instructor</div>
+                <p>With a decade of teaching experience, Jivan curates and delivers engaging course content for our students.</p>
+            </div>
+            <!-- Employee 3 -->
+            <div class="team-card">
+                <img src="images/employee3.jpg" alt="Community Manager">
+                <h3>Ansh Thakur</h3>
+                <div class="role">Community Manager</div>
+                <p>Ansh fosters a vibrant, supportive community, ensuring every learner feels welcome and heard.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 LearnOnline. All rights reserved.</p>
+        <p>Follow us on:
+            <a href="https://www.facebook.com" target="_blank">Facebook</a>
+            <a href="https://www.twitter.com" target="_blank">Twitter</a>
+            <a href="https://www.instagram.com" target="_blank">Instagram</a>
+        </p>
+    </footer>
+</body>
+</html>

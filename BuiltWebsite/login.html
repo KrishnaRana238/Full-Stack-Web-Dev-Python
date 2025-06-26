@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Learning Platform</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            margin: 0;
+            padding: 0;
+        }
+        .header-container {
+            background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
+            color: #fff;
+            padding: 32px 0 22px 0;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(99,102,241,0.08);
+        }
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+        }
+        .login-section {
+            background: #fff;
+            padding: 36px 44px;
+            border-radius: 14px;
+            box-shadow: 0 6px 32px rgba(99,102,241,0.10);
+            min-width: 340px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #6366f1;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        label {
+            margin-bottom: 4px;
+            color: #374151;
+            font-weight: 500;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="date"],
+        input[type="tel"] {
+            padding: 11px;
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+            background: #f1f5f9;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="email"]:focus,
+        input[type="date"]:focus,
+        input[type="tel"]:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 2px #a5b4fc55;
+        }
+        button[type="submit"] {
+            background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
+            color: #fff;
+            border: none;
+            padding: 13px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+            box-shadow: 0 2px 8px rgba(99,102,241,0.08);
+        }
+        button[type="submit"]:hover {
+            background: linear-gradient(90deg, #4f46e5 0%, #2563eb 100%);
+            box-shadow: 0 4px 16px rgba(99,102,241,0.12);
+        }
+        .toggle-link {
+            color: #6366f1;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.98rem;
+            text-decoration: underline;
+            padding: 0;
+        }
+        .footer-container {
+            text-align: center;
+            padding: 18px 0;
+            background: #e0e7ff;
+            color: #6366f1;
+            font-size: 0.98rem;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            letter-spacing: 0.5px;
+        }
+        @media (max-width: 500px) {
+            .login-section {
+                padding: 22px 8px;
+                min-width: unset;
+                width: 97vw;
+            }
+        }
+        .radio-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .radio-group label {
+            margin-bottom: 0;
+            font-weight: normal;
+        }
+
+        /* --- Create Account Section Improvements --- */
+        #registerBox {
+            background: #f8fafc;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(99,102,241,0.13);
+            padding: 32px 28px 28px 28px;
+            margin-top: 10px;
+            min-width: 340px;
+            display: none;
+        }
+        #registerBox form {
+            gap: 14px;
+        }
+        #registerBox label {
+            font-size: 1.05rem;
+            color: #4f46e5;
+            font-weight: 600;
+        }
+        #registerBox input[type="text"],
+        #registerBox input[type="email"],
+        #registerBox input[type="date"],
+        #registerBox input[type="tel"],
+        #registerBox input[type="password"] {
+            font-size: 1.08rem;
+            padding: 13px 12px;
+            border-radius: 8px;
+            border: 1.5px solid #a5b4fc;
+            background: #fff;
+            margin-bottom: 2px;
+            transition: border 0.2s, box-shadow 0.2s, transform 0.2s;
+        }
+        #registerBox input[type="text"]:focus,
+        #registerBox input[type="email"]:focus,
+        #registerBox input[type="date"]:focus,
+        #registerBox input[type="tel"]:focus,
+        #registerBox input[type="password"]:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 2px #6366f155;
+        }
+        #registerBox .radio-group {
+            gap: 18px;
+        }
+        #registerBox button[type="submit"] {
+            margin-top: 18px;
+            font-size: 1.08rem;
+            padding: 14px;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        #registerBox button[type="submit"]:hover {
+            background: linear-gradient(90deg, #4f46e5 0%, #2563eb 100%);
+        }
+        #registerBox .toggle-link {
+            margin-top: 18px;
+            font-size: 1rem;
+        }
+
+        /* --- Hover Magnifier Feature --- */
+        #registerBox input[type="text"]:hover,
+        #registerBox input[type="email"]:hover,
+        #registerBox input[type="date"]:hover,
+        #registerBox input[type="tel"]:hover,
+        #registerBox input[type="password"]:hover {
+            transform: scale(1.08);
+            z-index: 2;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 4px #6366f133;
+        }
+        #registerBox .radio-group input[type="radio"]:hover + label {
+            font-size: 1.12rem;
+            color: #2563eb;
+            font-weight: 700;
+        }
+        #registerBox label:hover {
+            text-shadow: 0 2px 8px #a5b4fc44;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <header>
+            <h1>Welcome to the Online Learning Platform</h1>
+        </header>
+    </div>
+    <div class="main-container">
+        <main>
+            <div class="login-section">
+                <section>
+                    <!-- Login Form -->
+                    <div id="loginBox">
+                        <h2>Login</h2>
+                        <form id="loginForm">
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" required>
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" required>
+                            <button type="submit">Login</button>
+                        </form>
+                        <button class="toggle-link" id="showRegister">Don't have an account? Create one</button>
+                    </div>
+                    <!-- Register Form -->
+                    <div id="registerBox">
+                        <h2>Create Account</h2>
+                        <form id="registerForm">
+                            <label for="regUsername">Username:</label>
+                            <input type="text" id="regUsername" name="regUsername" required>
+                            
+                            <label for="regEmail">Email:</label>
+                            <input type="email" id="regEmail" name="regEmail" required>
+                            
+                            <label>Gender:</label>
+                            <div class="radio-group">
+                                <div>
+                                    <input type="radio" id="male" name="gender" value="male" required>
+                                    <label for="male">Male</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="female" name="gender" value="female">
+                                    <label for="female">Female</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="other" name="gender" value="other">
+                                    <label for="other">Other</label>
+                                </div>
+                            </div>
+                            
+                            <label for="dob">Date of Birth:</label>
+                            <input type="date" id="dob" name="dob" required>
+                            
+                            <label for="phone">Phone Number:</label>
+                            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" title="10-digit phone number" required>
+                            
+                            <label for="regPassword">Password:</label>
+                            <input type="password" id="regPassword" name="regPassword" required>
+                            <button type="submit">Create Account</button>
+                        </form>
+                        <button class="toggle-link" id="showLogin">Already have an account? Login</button>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        // Toggle between login and register forms
+        document.getElementById('showRegister').onclick = function() {
+            document.getElementById('loginBox').style.display = 'none';
+            document.getElementById('registerBox').style.display = 'block';
+        };
+        document.getElementById('showLogin').onclick = function() {
+            document.getElementById('registerBox').style.display = 'none';
+            document.getElementById('loginBox').style.display = 'block';
+        };
+    </script>
+</body>
+</html>
