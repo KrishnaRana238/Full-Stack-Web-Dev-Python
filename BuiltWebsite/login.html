@@ -3,214 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Learning Platform</title>
+    <title>Login | LearnOnline</title>
+    <link rel="stylesheet" href="style.css">
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
-            margin: 0;
-            padding: 0;
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+            background: linear-gradient(120deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #222;
+            min-height: 100vh;
+            padding-bottom: 120px; /* for fixed footer */
         }
-        .header-container {
-            background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            padding: 1.5rem 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-radius: 8px;
+        }
+        .logo h1 {
+            font-size: 2.4rem;
+            color: #2d6cdf;
+            letter-spacing: 1.2px;
+            font-weight: 800;
+        }
+        .logo h1 a {
+            color: #2d6cdf;
+            text-decoration: none;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            transition: transform 0.3s, background 0.3s, color 0.3s;
+        }
+        .nav-links li a.active,
+        .nav-links li a:hover {
+            background: #2d6cdf;
             color: #fff;
-            padding: 32px 0 22px 0;
-            text-align: center;
-            box-shadow: 0 2px 12px rgba(99,102,241,0.08);
+            transform: scale(1.1);
+        }
+        .login-btn a {
+            background: #2d6cdf;
+            color: #fff;
+            padding: 0.8rem 1.6rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 4px 12px rgba(45, 108, 223, 0.15);
+        }
+        .login-btn a.active,
+        .login-btn a:hover {
+            background: #1b4173;
+            transform: scale(1.1);
         }
         .main-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 70vh;
-        }
-        .login-section {
+            max-width: 500px;
+            margin: 4rem auto 0 auto;
             background: #fff;
-            padding: 36px 44px;
-            border-radius: 14px;
-            box-shadow: 0 6px 32px rgba(99,102,241,0.10);
-            min-width: 340px;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(45, 108, 223, 0.13), 0 1.5px 8px rgba(0,0,0,0.04);
+            padding: 2.5rem 2rem 2rem 2rem;
         }
-        h2 {
-            margin-top: 0;
-            color: #6366f1;
+        .login-section h2 {
             text-align: center;
-            letter-spacing: 1px;
+            color: #2d6cdf;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
         }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-        label {
-            margin-bottom: 4px;
-            color: #374151;
-            font-weight: 500;
-        }
-        input[type="text"],
-        input[type="password"],
-        input[type="email"],
-        input[type="date"],
-        input[type="tel"] {
-            padding: 11px;
-            border: 1px solid #c7d2fe;
-            border-radius: 6px;
-            font-size: 1rem;
-            outline: none;
-            background: #f1f5f9;
-            transition: border 0.2s, box-shadow 0.2s;
-        }
-        input[type="text"]:focus,
-        input[type="password"]:focus,
-        input[type="email"]:focus,
-        input[type="date"]:focus,
-        input[type="tel"]:focus {
-            border-color: #6366f1;
-            box-shadow: 0 0 0 2px #a5b4fc55;
-        }
-        button[type="submit"] {
-            background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
-            color: #fff;
-            border: none;
-            padding: 13px;
-            border-radius: 6px;
-            font-size: 1rem;
+        form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #1b4173;
             font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s, box-shadow 0.2s;
-            margin-top: 10px;
-            box-shadow: 0 2px 8px rgba(99,102,241,0.08);
         }
-        button[type="submit"]:hover {
-            background: linear-gradient(90deg, #4f46e5 0%, #2563eb 100%);
-            box-shadow: 0 4px 16px rgba(99,102,241,0.12);
+        form input[type="text"],
+        form input[type="password"],
+        form input[type="email"],
+        form input[type="date"],
+        form input[type="tel"] {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            margin-bottom: 1.2rem;
+            border: 1px solid #c3cfe2;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #f5f7fa;
+            transition: border 0.2s;
+        }
+        form input:focus {
+            border: 1.5px solid #2d6cdf;
+            outline: none;
+        }
+        form button[type="submit"] {
+            width: 100%;
+            background: linear-gradient(90deg, #2d6cdf 60%, #5e9cff 100%);
+            color: #fff;
+            padding: 0.9rem 0;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 2px 8px rgba(45, 108, 223, 0.10);
+        }
+        form button[type="submit"]:hover {
+            background: linear-gradient(90deg, #1b4173 60%, #2d6cdf 100%);
+            transform: scale(1.04);
         }
         .toggle-link {
-            color: #6366f1;
+            display: block;
+            width: 100%;
+            margin: 1.2rem 0 0 0;
             background: none;
             border: none;
+            color: #2d6cdf;
+            font-weight: 600;
+            text-align: center;
             cursor: pointer;
-            text-align: center;
-            margin-top: 10px;
-            font-size: 0.98rem;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+        .toggle-link:hover {
+            color: #1b4173;
             text-decoration: underline;
-            padding: 0;
         }
-        .footer-container {
-            text-align: center;
-            padding: 18px 0;
-            background: #e0e7ff;
-            color: #6366f1;
-            font-size: 0.98rem;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-            left: 0;
-            letter-spacing: 0.5px;
-        }
-        @media (max-width: 500px) {
-            .login-section {
-                padding: 22px 8px;
-                min-width: unset;
-                width: 97vw;
-            }
-        }
+        #registerBox { display: none; }
         .radio-group {
             display: flex;
-            gap: 10px;
-            margin-bottom: 8px;
+            gap: 1.5rem;
+            margin-bottom: 1.2rem;
         }
-        .radio-group label {
-            margin-bottom: 0;
-            font-weight: normal;
+        .radio-group div {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
         }
-
-        /* --- Create Account Section Improvements --- */
-        #registerBox {
-            background: #f8fafc;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(99,102,241,0.13);
-            padding: 32px 28px 28px 28px;
-            margin-top: 10px;
-            min-width: 340px;
-            display: none;
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1.2rem 1.5rem;
+                gap: 1rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            .main-container {
+                padding: 1.2rem 0.7rem 1rem 0.7rem;
+            }
+            .login-section h2 {
+                font-size: 1.4rem;
+            }
         }
-        #registerBox form {
-            gap: 14px;
-        }
-        #registerBox label {
-            font-size: 1.05rem;
-            color: #4f46e5;
-            font-weight: 600;
-        }
-        #registerBox input[type="text"],
-        #registerBox input[type="email"],
-        #registerBox input[type="date"],
-        #registerBox input[type="tel"],
-        #registerBox input[type="password"] {
-            font-size: 1.08rem;
-            padding: 13px 12px;
-            border-radius: 8px;
-            border: 1.5px solid #a5b4fc;
+        footer {
             background: #fff;
-            margin-bottom: 2px;
-            transition: border 0.2s, box-shadow 0.2s, transform 0.2s;
+            color: #222;
+            text-align: center;
+            padding: 2rem 1rem 1.5rem 1rem;
+            border-radius: 12px 12px 0 0;
+            box-shadow: 0 -2px 16px rgba(45, 108, 223, 0.07);
+            font-size: 1.05rem;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100vw;
+            z-index: 200;
         }
-        #registerBox input[type="text"]:focus,
-        #registerBox input[type="email"]:focus,
-        #registerBox input[type="date"]:focus,
-        #registerBox input[type="tel"]:focus,
-        #registerBox input[type="password"]:focus {
-            border-color: #6366f1;
-            box-shadow: 0 0 0 2px #6366f155;
+        footer p {
+            margin-bottom: 0.7rem;
         }
-        #registerBox .radio-group {
-            gap: 18px;
+        footer a {
+            color: #2d6cdf;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            font-weight: 600;
+            transition: color 0.2s;
         }
-        #registerBox button[type="submit"] {
-            margin-top: 18px;
-            font-size: 1.08rem;
-            padding: 14px;
-            border-radius: 8px;
-            background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-        #registerBox button[type="submit"]:hover {
-            background: linear-gradient(90deg, #4f46e5 0%, #2563eb 100%);
-        }
-        #registerBox .toggle-link {
-            margin-top: 18px;
-            font-size: 1rem;
-        }
-
-        /* --- Hover Magnifier Feature --- */
-        #registerBox input[type="text"]:hover,
-        #registerBox input[type="email"]:hover,
-        #registerBox input[type="date"]:hover,
-        #registerBox input[type="tel"]:hover,
-        #registerBox input[type="password"]:hover {
-            transform: scale(1.08);
-            z-index: 2;
-            border-color: #6366f1;
-            box-shadow: 0 0 0 4px #6366f133;
-        }
-        #registerBox .radio-group input[type="radio"]:hover + label {
-            font-size: 1.12rem;
-            color: #2563eb;
-            font-weight: 700;
-        }
-        #registerBox label:hover {
-            text-shadow: 0 2px 8px #a5b4fc44;
+        footer a:hover {
+            color: #1b4173;
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="header-container">
-        <header>
-            <h1>Welcome to the Online Learning Platform</h1>
-        </header>
-    </div>
+    <nav>
+        <div class="logo">
+            <h1><a href="index.html">LearnOnline</a></h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="applied.html">Applied Courses</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="settings.html">Settings</a></li>
+        </ul>
+        <div class="login-btn">
+            <a href="login.html" class="active">Login</a>
+        </div>
+    </nav>
+
     <div class="main-container">
         <main>
             <div class="login-section">
@@ -218,8 +226,8 @@
                     <!-- Login Form -->
                     <div id="loginBox">
                         <h2>Login</h2>
-                        <form id="loginForm">
-                            <label for="username">Username:</label>
+                        <form id="loginForm" autocomplete="off">
+                            <label for="username">Username or Email:</label>
                             <input type="text" id="username" name="username" required>
                             <label for="password">Password:</label>
                             <input type="password" id="password" name="password" required>
@@ -230,7 +238,7 @@
                     <!-- Register Form -->
                     <div id="registerBox">
                         <h2>Create Account</h2>
-                        <form id="registerForm">
+                        <form id="registerForm" autocomplete="off">
                             <label for="regUsername">Username:</label>
                             <input type="text" id="regUsername" name="regUsername" required>
                             
@@ -270,6 +278,14 @@
         </main>
     </div>
     
+    <footer>
+        <p>&copy; 2025 LearnOnline. All rights reserved.</p>
+        <p>Follow us on:
+            <a href="https://www.facebook.com" target="_blank">Facebook</a>
+            <a href="https://www.twitter.com" target="_blank">Twitter</a>
+            <a href="https://www.instagram.com" target="_blank">Instagram</a>
+        </p>
+    </footer>
     <script>
         // Toggle between login and register forms
         document.getElementById('showRegister').onclick = function() {
@@ -277,6 +293,18 @@
             document.getElementById('registerBox').style.display = 'block';
         };
         document.getElementById('showLogin').onclick = function() {
+            document.getElementById('registerBox').style.display = 'none';
+            document.getElementById('loginBox').style.display = 'block';
+        };
+
+        // Demo: Prevent default form submission and show alerts
+        document.getElementById('loginForm').onsubmit = function(e) {
+            e.preventDefault();
+            alert('Login functionality is for demo only.');
+        };
+        document.getElementById('registerForm').onsubmit = function(e) {
+            e.preventDefault();
+            alert('Account created! (Demo only, no backend)');
             document.getElementById('registerBox').style.display = 'none';
             document.getElementById('loginBox').style.display = 'block';
         };

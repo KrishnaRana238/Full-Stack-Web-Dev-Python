@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Modern Calculator</title>
+    <style>
+        :root {
+            --bg: #18181b;
+            --panel: #27272a;
+            --btn: #3f3f46;
+            --btn-hover: #52525b;
+            --accent: #6366f1;
+            --text: #f4f4f5;
+            --equal: #22d3ee;
+        }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .calculator {
+            background: var(--panel);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            padding: 2rem 1.5rem;
+            width: 340px;
+            max-width: 95vw;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .display {
+            background: transparent;
+            color: var(--text);
+            font-size: 2.2rem;
+            border: none;
+            outline: none;
+            text-align: right;
+            padding: 0.5rem 0.7rem;
+            margin-bottom: 0.5rem;
+            min-height: 2.5em;
+            word-break: break-all;
+            letter-spacing: 1px;
+            user-select: all;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem;
+        }
+        button {
+            background: var(--btn);
+            color: var(--text);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            padding: 1rem 0;
+            cursor: pointer;
+            transition: background 0.15s;
+            font-weight: 500;
+            outline: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        button:hover {
+            background: var(--btn-hover);
+        }
+        .btn-accent {
+            background: var(--accent);
+            color: #fff;
+        }
+        .btn-equal {
+            background: var(--equal);
+            color: #18181b;
+            grid-column: span 2;
+            font-weight: bold;
+        }
+        .btn-wide {
+            grid-column: span 2;
+        }
+        @media (max-width: 400px) {
+            .calculator { padding: 1rem 0.5rem; }
+            .display { font-size: 1.3rem; }
+            button { font-size: 1rem; padding: 0.7rem 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" class="display" id="display" value="0" readonly>
+        <div class="buttons">
+            <button class="btn-accent" onclick="clearDisplay()">C</button>
+            <button onclick="backspace()">&larr;</button>
+            <button onclick="append('%')">%</button>
+            <button onclick="append('/')">&divide;</button>
+            <button onclick="append('7')">7</button>
+            <button onclick="append('8')">8</button>
+            <button onclick="append('9')">9</button>
+            <button onclick="append('*')">&times;</button>
+            <button onclick="append('4')">4</button>
+            <button onclick="append('5')">5</button>
+            <button onclick="append('6')">6</button>
+            <button onclick="append('-')">&minus;</button>
+            <button onclick="append('1')">1</button>
+            <button onclick="append('2')">2</button>
+            <button onclick="append('3')">3</button>
+            <button onclick="append('+')">+</button>
+            <button class="btn-wide" onclick="append('0')">0</button>
+            <button onclick="append('.')">.</button>
+            <button class="btn-equal" onclick="calculate()">=</button>
+        </div>
+    </div>
+    <script>
+        const display = document.getElementById('display');
+        let current = '0';
+        let resetNext = false;
+
+        function updateDisplay() {
+            display.value = current;
+        }
+
+        function append(char) {
+            if (resetNext) {
+                current = (/[0-9.]/.test(char)) ? char : current;
+                resetNext = false;
+            } else {
+                if (current === '0' && char !== '.') {
+                    current = char;
+                } else {
+                    // Prevent multiple decimals in a number
+                    if (char === '.' && /\.\d*$/.test(current.split(/[\+\-\*\/%]/).pop())) return;
+                    // Prevent two operators in a row
+                    if (/[+\-*/%]/.test(char) && /[+\-*/%]$/.test(current)) {
+                        current = current.slice(0, -1) + char;
+                        updateDisplay();
+                        return;
+                    }
+                    current += char;
+                }
+            }
+            updateDisplay();
+        }
+
+        function clearDisplay() {
+            current = '0';
+            updateDisplay();
+        }
+
+        function backspace() {
+            if (resetNext) {
+                clearDisplay();
+                resetNext = false;
+                return;
+            }
+            if (current.length > 1) {
+                current = current.slice(0, -1);
+            } else {
+                current = '0';
+            }
+            updateDisplay();
+        }
+
+        function calculate() {
+            try {
+                // Replace % with /100 for percentage calculation
+                let expr = current.replace(/%/g, '/100');
+                // Evaluate safely
+                let result = Function('"use strict";return (' + expr + ')')();
+                if (result === undefined || isNaN(result)) throw Error();
+                current = String(Number(result.toFixed(10)));
+                resetNext = true;
+            } catch {
+                current = 'Error';
+                resetNext = true;
+            }
+            updateDisplay();
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (e.key >= '0' && e.key <= '9') append(e.key);
+            else if (['+', '-', '*', '/', '%', '.'].includes(e.key)) append(e.key);
+            else if (e.key === 'Enter' || e.key === '=') { e.preventDefault(); calculate(); }
+            else if (e.key === 'Backspace') backspace();
+            else if (e.key.toLowerCase() === 'c') clearDisplay();
+        });
+    </script>
+</body>
+</html>
