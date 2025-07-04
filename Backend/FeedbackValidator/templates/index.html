@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback Form</title>
+</head>
+<body style="background-color: #f0f4f8; font-family: Arial, sans-serif; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100vh;">
+
+    <div style="background-color: #fff; padding: 30px 40px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 400px;">
+        <h1 style="text-align: center; color: #333; margin-bottom: 20px;">Give Your Feedback</h1>
+
+        <form method="POST" style="display: flex; flex-direction: column;">
+            {{ form.hidden_tag() }} 
+
+            <p style="margin-bottom: 20px;">
+                <label style="font-weight: bold; color: #444;">{{ form.name.label }}</label><br>
+                {{ form.name(size=30, style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 100%;") }}<br>
+                {% for error in form.name.errors %}
+                    <span style="color: red; font-size: 0.9em;">[{{ error }}]</span><br>
+                {% endfor %}
+            </p>
+
+            <p style="margin-bottom: 20px;">
+                <label style="font-weight: bold; color: #444;">{{ form.feedback.label }}</label><br>
+                {{ form.feedback(rows=5, cols=30, style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 100%; resize: none;") }}<br>
+                {% for error in form.feedback.errors %}
+                    <span style="color: red; font-size: 0.9em;">[{{ error }}]</span><br>
+                {% endfor %}
+            </p>
+
+            <p style="text-align: center;">
+                {{ form.submit(style="padding: 12px; align-items: center ; background-color: #007bff; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;") }}
+            </p>
+        </form>
+    </div>
+
+</body>
+</html>
