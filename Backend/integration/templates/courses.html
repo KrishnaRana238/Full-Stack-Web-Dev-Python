@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses | LearnOnline</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:600,400&display=swap" rel="stylesheet">
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+            background: linear-gradient(120deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #222;
+            min-height: 100vh;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            padding: 1.5rem 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-radius: 8px;
+        }
+        .logo h1 {
+            font-size: 2.4rem;
+            color: #2d6cdf;
+            letter-spacing: 1.2px;
+            font-weight: 800;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            transition: transform 0.3s, background 0.3s, color 0.3s;
+        }
+        .nav-links li a.active,
+        .nav-links li a:hover {
+            background: #2d6cdf;
+            color: #fff;
+            transform: scale(1.1);
+        }
+        .login-btn a {
+            background: #2d6cdf;
+            color: #fff;
+            padding: 0.8rem 1.6rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 4px 12px rgba(45, 108, 223, 0.15);
+        }
+        .login-btn a:hover {
+            background: #1b4173;
+            transform: scale(1.1);
+        }
+        main {
+            max-width: 1200px;
+            margin: 3rem auto 2rem auto;
+            padding: 0 1rem;
+        }
+        .courses-title {
+            text-align: center;
+            font-size: 2.3rem;
+            color: #2d6cdf;
+            font-weight: 800;
+            margin-bottom: 2.2rem;
+            letter-spacing: 1px;
+        }
+        .courses-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            list-style: none;
+            padding: 0;
+        }
+        /* Improved Course Card UI */
+        .course-card {
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 8px 32px rgba(45, 108, 223, 0.13), 0 1.5px 8px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.22s, box-shadow 0.22s;
+            overflow: hidden;
+            min-height: 440px;
+            position: relative;
+        }
+        .course-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 7px;
+            background: linear-gradient(90deg, #2d6cdf 60%, #5e9cff 100%);
+            z-index: 1;
+        }
+        .course-thumb {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 22px 22px 0 0;
+            box-shadow: 0 2px 12px rgba(45, 108, 223, 0.09);
+            transition: filter 0.3s;
+            filter: brightness(0.97) saturate(1.1);
+        }
+        .course-card:hover .course-thumb {
+            filter: brightness(1.05) saturate(1.2) drop-shadow(0 4px 16px #2d6cdf33);
+        }
+        .course-title {
+            margin: 22px 0 12px 0;
+            font-size: 1.22rem;
+            font-weight: 800;
+            text-align: center;
+            color: #1b4173;
+            min-height: 48px;
+            padding: 0 1.2rem;
+            letter-spacing: 0.5px;
+        }
+        .course-meta {
+            font-size: 0.98rem;
+            color: #5e9cff;
+            margin-bottom: 10px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+        .course-actions {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            align-items: center;
+            margin-top: auto;
+            margin-bottom: 22px;
+        }
+        .course-actions a, .course-actions button {
+            border: none;
+            outline: none;
+            padding: 0.8rem 1.7rem;
+            border-radius: 10px;
+            font-size: 1.07rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.18s, color 0.18s, transform 0.18s, box-shadow 0.18s;
+        }
+        .course-actions a {
+            background: linear-gradient(90deg, #2d6cdf 60%, #5e9cff 100%);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(45, 108, 223, 0.10);
+            letter-spacing: 0.5px;
+        }
+        .course-actions a:hover {
+            background: linear-gradient(90deg, #1b4173 60%, #2d6cdf 100%);
+            transform: scale(1.09);
+            box-shadow: 0 4px 16px #2d6cdf33;
+        }
+        .course-actions button {
+            background: #fff;
+            color: #2d6cdf;
+            border: 2px solid #2d6cdf;
+            font-weight: 700;
+            box-shadow: 0 1px 6px #2d6cdf11;
+        }
+        .course-actions button:hover {
+            background: #2d6cdf;
+            color: #fff;
+            transform: scale(1.09);
+            box-shadow: 0 4px 16px #2d6cdf33;
+        }
+        .course-badge {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            background: linear-gradient(90deg, #ffb347 60%, #ffcc80 100%);
+            color: #fff;
+            font-size: 0.92rem;
+            font-weight: 700;
+            padding: 0.38em 1em;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px #ffb34733;
+            z-index: 2;
+            letter-spacing: 0.5px;
+            display: none;
+        }
+        .course-card.featured .course-badge {
+            display: block;
+        }
+        .course-card:hover {
+            transform: translateY(-10px) scale(1.045);
+            box-shadow: 0 12px 40px rgba(45, 108, 223, 0.18), 0 1.5px 8px rgba(0,0,0,0.04);
+        }
+        @media (max-width: 900px) {
+            .courses-list {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+        }
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1.2rem 1.5rem;
+                gap: 1rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            main {
+                padding: 0 0.5rem;
+            }
+            .courses-title {
+                font-size: 1.5rem;
+            }
+            .courses-list {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .course-thumb {
+                height: 130px;
+            }
+            .course-card {
+                min-height: 340px;
+            }
+        }
+        footer {
+            background: #fff;
+            color: #222;
+            text-align: center;
+            padding: 2rem 1rem 1.5rem 1rem;
+            border-radius: 12px 12px 0 0;
+            margin-top: 3rem;
+            box-shadow: 0 -2px 16px rgba(45, 108, 223, 0.07);
+            font-size: 1.05rem;
+        }
+        footer p {
+            margin-bottom: 0.7rem;
+        }
+        footer a {
+            color: #2d6cdf;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        footer a:hover {
+            color: #1b4173;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <h1>LearnOnline</h1>
+        </div>
+       <ul class="nav-links">
+            <li><a href="{{url_for('home')}}">Home</a></li>
+            <li><a href="{{ url_for('courses') }}" class= active>Courses</a></li>
+            <li><a href="{{ url_for('applied') }}">Applied Courses</a></li>
+            <li><a href="{{ url_for('about') }}">About Us</a></li>
+            <li><a href="{{ url_for('setting') }}">Settings</a></li>
+        </ul>
+        <div class="login-btn">
+            <a href="{{ url_for('login') }}">Login</a>
+        </div>
+    </nav>
+    <main>
+        <div class="courses-title">Browse Our Popular Courses</div>
+        <ul class="courses-list">
+            <!-- HTML Course -->
+            <li class="course-card featured">
+                <span class="course-badge">Popular</span>
+                <img class="course-thumb" src="https://img.youtube.com/vi/pQN-pnXPaVg/hqdefault.jpg" alt="HTML Full Course Thumbnail">
+                <div class="course-title">HTML Full Course - Build a Website Tutorial</div>
+                <div class="course-meta">Beginner &middot; 5h 30m</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=pQN-pnXPaVg" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- CSS Course -->
+            <li class="course-card">
+                <img class="course-thumb" src="https://img.youtube.com/vi/yfoY53QXEnI/hqdefault.jpg" alt="CSS Crash Course Thumbnail">
+                <div class="course-title">CSS Crash Course For Beginners</div>
+                <div class="course-meta">Beginner &middot; 1h 20m</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=yfoY53QXEnI" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- JavaScript Course -->
+            <li class="course-card featured">
+                <span class="course-badge">Trending</span>
+                <img class="course-thumb" src="https://img.youtube.com/vi/PkZNo7MFNFg/hqdefault.jpg" alt="JavaScript Full Course Thumbnail">
+                <div class="course-title">JavaScript Full Course (2023)</div>
+                <div class="course-meta">Beginner &middot; 8h 30m</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=PkZNo7MFNFg" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- React JS Course -->
+            <li class="course-card">
+                <img class="course-thumb" src="https://img.youtube.com/vi/w7ejDZ8SWv8/hqdefault.jpg" alt="React JS Crash Course Thumbnail">
+                <div class="course-title">React JS Crash Course</div>
+                <div class="course-meta">Intermediate &middot; 2h 10m</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=w7ejDZ8SWv8" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- Node.js Course -->
+            <li class="course-card">
+                <img class="course-thumb" src="https://img.youtube.com/vi/TlB_eWDSMt4/hqdefault.jpg" alt="Node.js Tutorial Thumbnail">
+                <div class="course-title">Node.js Tutorial for Beginners</div>
+                <div class="course-meta">Beginner &middot; 2h 30m</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=TlB_eWDSMt4" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- Python Course -->
+            <li class="course-card featured">
+                <span class="course-badge">Top Rated</span>
+                <img class="course-thumb" src="https://img.youtube.com/vi/_uQrJ0TkZlc/hqdefault.jpg" alt="Python Full Course Thumbnail">
+                <div class="course-title">Python Full Course - Learn Python in 12 Hours</div>
+                <div class="course-meta">Beginner &middot; 12h</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=_uQrJ0TkZlc" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- Java Course -->
+            <li class="course-card">
+                <img class="course-thumb" src="https://img.youtube.com/vi/Qgl81fPcLc8/hqdefault.jpg" alt="Java Full Course Thumbnail">
+                <div class="course-title">Java Full Course for Beginners</div>
+                <div class="course-meta">Beginner &middot; 9h 30m</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=Qgl81fPcLc8" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- C++ Course -->
+            <li class="course-card">
+                <img class="course-thumb" src="https://img.youtube.com/vi/vLnPwxZdW4Y/hqdefault.jpg" alt="C++ Full Course Thumbnail">
+                <div class="course-title">C++ Full Course - Beginner to Advanced</div>
+                <div class="course-meta">Beginner &middot; 6h 30m</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=vLnPwxZdW4Y" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- C Programming Course -->
+            <li class="course-card">
+                <img class="course-thumb" src="https://img.youtube.com/vi/KJgsSFOSQv0/hqdefault.jpg" alt="C Programming Tutorial Thumbnail">
+                <div class="course-title">C Programming Tutorial for Beginners</div>
+                <div class="course-meta">Beginner &middot; 3h 45m</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=KJgsSFOSQv0" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- SQL Course -->
+            <li class="course-card">
+                <img class="course-thumb" src="https://img.youtube.com/vi/HXV3zeQKqGY/hqdefault.jpg" alt="SQL Full Course Thumbnail">
+                <div class="course-title">SQL Full Course - Learn SQL in 6 Hours</div>
+                <div class="course-meta">Beginner &middot; 6h</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=HXV3zeQKqGY" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- Bootstrap 5 Course -->
+            <li class="course-card">
+                <img class="course-thumb" src="https://img.youtube.com/vi/4sosXZsdy-s/hqdefault.jpg" alt="Bootstrap 5 Crash Course Thumbnail">
+                <div class="course-title">Bootstrap 5 Crash Course</div>
+                <div class="course-meta">Beginner &middot; 2h 10m</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=4sosXZsdy-s" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- PHP Course -->
+            <li class="course-card">
+                <img class="course-thumb" src="https://img.youtube.com/vi/OK_JCtrrv-c/hqdefault.jpg" alt="PHP Full Course Thumbnail">
+                <div class="course-title">PHP Full Course for Beginners</div>
+                <div class="course-meta">Beginner &middot; 4h 30m</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=OK_JCtrrv-c" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- MongoDB Course -->
+            <li class="course-card">
+                <img class="course-thumb" src="https://img.youtube.com/vi/ofme2o29ngU/hqdefault.jpg" alt="MongoDB Tutorial Thumbnail">
+                <div class="course-title">MongoDB Tutorial for Beginners</div>
+                <div class="course-meta">Beginner &middot; 2h 50m</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=ofme2o29ngU" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- Angular Course -->
+            <li class="course-card">
+                <img class="course-thumb" src="https://img.youtube.com/vi/2OHbjep_WjQ/hqdefault.jpg" alt="Angular Full Course Thumbnail">
+                <div class="course-title">Angular Full Course - Learn Angular in 6 Hours</div>
+                <div class="course-meta">Intermediate &middot; 6h</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=2OHbjep_WjQ" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- DSA Course (freeCodeCamp) -->
+            <li class="course-card">
+                <img class="course-thumb" src="https://img.youtube.com/vi/8hly31xKli0/hqdefault.jpg" alt="DSA Full Course Thumbnail">
+                <div class="course-title">Data Structures and Algorithms Full Course</div>
+                <div class="course-meta">Intermediate &middot; 8h 36m</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=8hly31xKli0" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- DSA Course (Striver) -->
+            <li class="course-card featured">
+                <span class="course-badge">Striver's Pick</span>
+                <img class="course-thumb" src="https://img.youtube.com/vi/t6zLJOCVqD0/hqdefault.jpg" alt="Striver DSA Course Thumbnail">
+                <div class="course-title">DSA Course by Striver (A-Z DSA Sheet)</div>
+                <div class="course-meta">Intermediate &middot; Playlist</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/playlist?list=PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY" target="_blank">Watch Playlist</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- Machine Learning Course -->
+            <li class="course-card">
+                <img class="course-thumb" src="https://img.youtube.com/vi/Gv9_4yMHFhI/hqdefault.jpg" alt="Machine Learning Full Course Thumbnail">
+                <div class="course-title">Machine Learning Full Course</div>
+                <div class="course-meta">Intermediate &middot; 10h</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=Gv9_4yMHFhI" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- AI Course -->
+            <li class="course-card">
+                <img class="course-thumb" src="https://img.youtube.com/vi/JMUxmLyrhSk/hqdefault.jpg" alt="Artificial Intelligence Full Course Thumbnail">
+                <div class="course-title">Artificial Intelligence Full Course</div>
+                <div class="course-meta">Intermediate &middot; 7h 45m</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=JMUxmLyrhSk" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- Flutter Course -->
+            <li class="course-card">
+                <img class="course-thumb" src="https://img.youtube.com/vi/VPvVD8t02U8/hqdefault.jpg" alt="Flutter Full Course Thumbnail">
+                <div class="course-title">Flutter Full Course - Build Apps with Flutter</div>
+                <div class="course-meta">Intermediate &middot; 3h 40m</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=VPvVD8t02U8" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- Android Course -->
+            <li class="course-card">
+                <img class="course-thumb" src="https://img.youtube.com/vi/fis26HvvDII/hqdefault.jpg" alt="Android Development Thumbnail">
+                <div class="course-title">Android Development for Beginners</div>
+                <div class="course-meta">Beginner &middot; 11h</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=fis26HvvDII" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- iOS Course -->
+            <li class="course-card">
+                <img class="course-thumb" src="https://img.youtube.com/vi/FcsY1YPBwzQ/hqdefault.jpg" alt="iOS Development Thumbnail">
+                <div class="course-title">iOS Development with Swift</div>
+                <div class="course-meta">Intermediate &middot; 3h 10m</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=FcsY1YPBwzQ" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+            <!-- DevOps Course -->
+            <li class="course-card">
+                <img class="course-thumb" src="https://img.youtube.com/vi/0yWAtQ6wYNM/hqdefault.jpg" alt="DevOps Full Course Thumbnail">
+                <div class="course-title">DevOps Full Course</div>
+                <div class="course-meta">Intermediate &middot; 7h 30m</div>
+                <div class="course-actions">
+                    <a href="https://www.youtube.com/watch?v=0yWAtQ6wYNM" target="_blank">Watch Video</a>
+                    <form action="applied.html" method="get" style="display:inline;">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </main>
+    <footer>
+        <p>&copy; 2025 LearnOnline. All rights reserved.</p>
+        <p>Follow us on:
+            <a href="https://www.facebook.com" target="_blank">Facebook</a>
+            <a href="https://www.twitter.com" target="_blank">Twitter</a>
+            <a href="https://www.instagram.com" target="_blank">Instagram</a>
+        </p>
+    </footer>
+</body>
+</html>

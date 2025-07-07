@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | LearnOnline</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+            background: linear-gradient(120deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #222;
+            min-height: 100vh;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            padding: 1.5rem 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-radius: 8px;
+        }
+        .logo h1 {
+            font-size: 2.4rem;
+            color: #2d6cdf;
+            letter-spacing: 1.2px;
+            font-weight: 800;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            transition: transform 0.3s, background 0.3s, color 0.3s;
+        }
+        .nav-links li a.active,
+        .nav-links li a:hover {
+            background: #2d6cdf;
+            color: #fff;
+            transform: scale(1.1);
+        }
+        .login-btn a {
+            background: #2d6cdf;
+            color: #fff;
+            padding: 0.8rem 1.6rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 4px 12px rgba(45, 108, 223, 0.15);
+        }
+        .login-btn a:hover {
+            background: #1b4173;
+            transform: scale(1.1);
+        }
+        .about-hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: 3rem auto 2rem auto;
+            padding: 2.5rem 2rem;
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 8px 32px rgba(45, 108, 223, 0.13), 0 1.5px 8px rgba(0,0,0,0.04);
+            gap: 2.5rem;
+        }
+        .about-hero-content {
+            max-width: 600px;
+        }
+        .about-hero-content h2 {
+            font-size: 2.2rem;
+            color: #2d6cdf;
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            letter-spacing: 1px;
+        }
+        .about-hero-content p {
+            font-size: 1.18rem;
+            color: #222;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+        .about-team-section {
+            max-width: 1100px;
+            margin: 2rem auto 2rem auto;
+            padding: 2.5rem 2rem;
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 8px 32px rgba(45, 108, 223, 0.13), 0 1.5px 8px rgba(0,0,0,0.04);
+        }
+        .about-team-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #2d6cdf;
+            font-weight: 800;
+            margin-bottom: 2.2rem;
+            letter-spacing: 1px;
+        }
+        .team-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.2rem;
+            justify-items: center;
+        }
+        .team-card {
+            background: #f5f7fa;
+            border-radius: 18px;
+            box-shadow: 0 4px 16px rgba(45, 108, 223, 0.07);
+            padding: 2rem 1.2rem 1.5rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 210px;
+            max-width: 320px;
+            transition: transform 0.18s, box-shadow 0.18s;
+        }
+        .team-card:hover {
+            transform: translateY(-8px) scale(1.04);
+            box-shadow: 0 8px 32px rgba(45, 108, 223, 0.13);
+        }
+        .team-card img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 1.1rem;
+            border: 3px solid #2d6cdf;
+            box-shadow: 0 2px 8px #2d6cdf22;
+        }
+        .team-card h3 {
+            font-size: 1.18rem;
+            color: #1b4173;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            text-align: center;
+        }
+        .team-card .role {
+            font-size: 1rem;
+            color: #5e9cff;
+            font-weight: 600;
+            margin-bottom: 0.7rem;
+            text-align: center;
+        }
+        .team-card p {
+            font-size: 0.98rem;
+            color: #333;
+            text-align: center;
+            line-height: 1.5;
+        }
+        @media (max-width: 900px) {
+            .about-hero {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 1.5rem 0.7rem;
+            }
+            .about-team-section {
+                padding: 1.5rem 0.7rem;
+            }
+            .team-cards {
+                gap: 1.2rem;
+            }
+        }
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1.2rem 1.5rem;
+                gap: 1rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            .about-hero-content h2 {
+                font-size: 1.4rem;
+            }
+            .about-hero-content p {
+                font-size: 1rem;
+            }
+            .about-hero {
+                padding: 1rem 0.2rem;
+            }
+            .about-team-section {
+                padding: 1rem 0.2rem;
+            }
+            .team-card {
+                padding: 1.2rem 0.5rem 1rem 0.5rem;
+            }
+        }
+        footer {
+            background: #fff;
+            color: #222;
+            text-align: center;
+            padding: 2rem 1rem 1.5rem 1rem;
+            border-radius: 12px 12px 0 0;
+            margin-top: 3rem;
+            box-shadow: 0 -2px 16px rgba(45, 108, 223, 0.07);
+            font-size: 1.05rem;
+        }
+        footer p {
+            margin-bottom: 0.7rem;
+        }
+        footer a {
+            color: #2d6cdf;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        footer a:hover {
+            color: #1b4173;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <h1>LearnOnline</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{url_for('home')}}">Home</a></li>
+            <li><a href="{{ url_for('courses') }}">Courses</a></li>
+            <li><a href="{{ url_for('applied') }}">Applied Courses</a></li>
+            <li><a href="{{ url_for('about') }}" class= active>About Us</a></li>
+            <li><a href="{{ url_for('setting') }}">Settings</a></li>
+        </ul>
+        <div class="login-btn">
+            <a href="{{ url_for('login') }}">Login</a>
+        </div>
+    </nav>
+
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <h2>About LearnOnline</h2>
+            <p>
+                LearnOnline is dedicated to making quality education accessible to everyone, everywhere. Our mission is to empower learners with flexible, engaging, and industry-relevant courses, supported by a passionate team of educators and technologists.
+            </p>
+        </div>
+        <img src="images/Team.jpg" alt="About LearnOnline" style="width:340px;max-width:100%;">
+    </section>
+
+    <section class="about-team-section">
+        <h2>Meet Our Team</h2>
+        <div class="team-cards">
+            <!-- CEO -->
+            <div class="team-card">
+                <img src="images/ceo.jpg" alt="CEO">
+                <h3>Krishna Rana</h3>
+                <div class="role">Chief Executive Officer</div>
+                <p>Visionary leader with a passion for democratizing education. Krishna drives our mission and inspires the team to innovate every day.</p>
+            </div>
+            <!-- CTO -->
+            <div class="team-card">
+                <img src="images/ceo1.png" alt="CTO">
+                <h3>Anant Tyagi</h3>
+                <div class="role">Chief Technology Officer</div>
+                <p>Tech enthusiast and architect of our platform. Anant ensures LearnOnline is fast, secure, and always evolving.</p>
+            </div>
+            <!-- Employee 1 -->
+            <div class="team-card">
+                <img src="images/ceo2.png" alt="Product Manager">
+                <h3>Subhajit Pati</h3>
+                <div class="role">Product Manager</div>
+                <p>Bridging the gap between learners and technology, Subhajit crafts seamless learning experiences for all users.</p>
+            </div>
+            <!-- Employee 2 -->
+            <div class="team-card">
+                <img src="images/ceo3.png" alt="Lead Instructor">
+                <h3>Jivan Jyoti Rout</h3>
+                <div class="role">Lead Instructor</div>
+                <p>With a decade of teaching experience, Jivan curates and delivers engaging course content for our students.</p>
+            </div>
+            <!-- Employee 3 -->
+            <div class="team-card">
+                <img src="images/ceo4.png" alt="Community Manager">
+                <h3>Ansh Thakur</h3>
+                <div class="role">Community Manager</div>
+                <p>Ansh fosters a vibrant, supportive community, ensuring every learner feels welcome and heard.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 LearnOnline. All rights reserved.</p>
+        <p>Follow us on:
+            <a href="https://www.facebook.com" target="_blank">Facebook</a>
+            <a href="https://www.twitter.com" target="_blank">Twitter</a>
+            <a href="https://www.instagram.com" target="_blank">Instagram</a>
+        </p>
+    </footer>
+</body>
+</html>

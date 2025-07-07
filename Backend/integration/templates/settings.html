@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - LearnOnline</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+            background: linear-gradient(120deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #222;
+            min-height: 100vh;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            padding: 1.5rem 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-radius: 8px;
+        }
+        .logo h1 {
+            font-size: 2.4rem;
+            color: #2d6cdf;
+            letter-spacing: 1.2px;
+            font-weight: 800;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            transition: transform 0.3s, background 0.3s, color 0.3s;
+        }
+        .nav-links li a.active,
+        .nav-links li a:hover {
+            background: #2d6cdf;
+            color: #fff;
+            transform: scale(1.1);
+        }
+        .login-btn a {
+            background: #2d6cdf;
+            color: #fff;
+            padding: 0.8rem 1.6rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 4px 12px rgba(45, 108, 223, 0.15);
+        }
+        .login-btn a:hover {
+            background: #1b4173;
+            transform: scale(1.1);
+        }
+        .settings-container {
+            max-width: 900px;
+            margin: 2.5rem auto;
+            padding: 2rem 1.5rem;
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 8px 32px rgba(45, 108, 223, 0.13), 0 1.5px 8px rgba(0,0,0,0.04);
+        }
+        .settings-section {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1.5px solid #e3e8f0;
+        }
+        .settings-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .settings-section h2 {
+            color: #2d6cdf;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+        .profile-avatar {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        .avatar-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2.5px solid #2d6cdf;
+            box-shadow: 0 2px 8px #2d6cdf22;
+        }
+        .form-group {
+            margin-bottom: 1.3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .form-group label {
+            font-weight: 600;
+            color: #1b4173;
+            margin-bottom: 0.2rem;
+        }
+        footer {
+            background: #fff;
+            color: #222;
+            text-align: center;
+            padding: 2rem 1rem 1.5rem 1rem;
+            border-radius: 12px 12px 0 0;
+            margin-top: 3rem;
+            box-shadow: 0 -2px 16px rgba(45, 108, 223, 0.07);
+            font-size: 1.05rem;
+        }
+        footer p {
+            margin-bottom: 0.7rem;
+        }
+        footer a {
+            color: #2d6cdf;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        footer a:hover {
+            color: #1b4173;
+            text-decoration: underline;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="password"] {
+            padding: 0.7rem 1rem;
+            border: 1.5px solid #c3cfe2;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            background: #f5f7fa;
+            transition: border 0.2s;
+        }
+        input:focus {
+            border-color: #2d6cdf;
+            outline: none;
+        }
+        .btn, .btn-danger, .btn-secondary {
+            background: #2d6cdf;
+            color: #fff;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            margin-right: 0.7rem;
+            margin-top: 0.3rem;
+            box-shadow: 0 2px 8px rgba(45, 108, 223, 0.10);
+        }
+        .btn:hover, .btn-secondary:hover {
+            background: #1b4173;
+            transform: scale(1.05);
+        }
+        .btn-danger {
+            background: #e74c3c;
+        }
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        .btn-secondary {
+            background: #888;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 52px;
+            height: 28px;
+            margin-right: 1rem;
+            vertical-align: middle;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #c3cfe2;
+            border-radius: 28px;
+            transition: .4s;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 3px;
+            bottom: 3px;
+            background-color: #fff;
+            border-radius: 50%;
+            transition: .4s;
+            box-shadow: 0 2px 6px #2d6cdf22;
+        }
+        .switch input:checked + .slider {
+            background-color: #2d6cdf;
+        }
+        .switch input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+        .switch-label {
+            font-size: 1rem;
+            color: #444;
+            font-weight: 500;
+            margin-left: 0.5rem;
+        }
+        .plan-badge {
+            background: #2d6cdf;
+            color: #fff;
+            padding: 0.3rem 1rem;
+            border-radius: 16px;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-left: 0.7rem;
+            letter-spacing: 0.5px;
+        }
+        .danger-zone {
+            background: #fff6f6;
+            border: 1.5px solid #e74c3c33;
+            border-radius: 14px;
+            padding: 1.5rem 1rem;
+            margin-top: 2rem;
+            box-shadow: 0 2px 12px #e74c3c11;
+        }
+        @media (max-width: 900px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1.2rem 1.5rem;
+                gap: 1rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+        @media (max-width: 700px) {
+            .settings-container {
+                padding: 1.2rem 0.5rem;
+            }
+            .settings-section {
+                padding-bottom: 1rem;
+            }
+            .profile-avatar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.7rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+            nav {
+                padding: 1rem 0.7rem;
+            }
+        }
+    </style>
+    */
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <h1>LearnOnline</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{url_for('home')}}">Home</a></li>
+            <li><a href="{{ url_for('courses') }}">Courses</a></li>
+            <li><a href="{{ url_for('applied') }}">Applied Courses</a></li>
+            <li><a href="{{ url_for('about') }}">About Us</a></li>
+            <li><a href="{{ url_for('setting') }}" class= active>Settings</a></li>
+        </ul>
+        <div class="login-btn">
+            <a href="{{ url_for('login') }}">Login</a>
+        </div>
+    </nav>
+
+    <div class="settings-container">
+        <div class="settings-section">
+            <h2>Profile</h2>
+            <div class="profile-avatar">
+                <img src="images/ ceo.png" alt="Avatar" class="avatar-img">
+                <div>
+                    <strong>Krishna Rana</strong><br>
+                    <span>rana.learner@email.com</span>
+                </div>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" value="Alex Learner">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" value="alex.learner@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" value="+91 9876543210">
+                </div>
+                <button type="submit" class="btn">Save Changes</button>
+            </form>
+        </div>
+
+        <div class="settings-section">
+            <h2>Account Settings</h2>
+            <form>
+                <div class="form-group">
+                    <label for="password">Change Password</label>
+                    <input type="password" id="password" placeholder="New Password">
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" placeholder="Confirm New Password">
+                </div>
+                <button type="submit" class="btn">Update Password</button>
+            </form>
+        </div>
+
+        <div class="settings-section">
+            <h2>Preferences</h2>
+            <form>
+                <div class="form-group">
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                    <span class="switch-label">Enable Email Notifications</span>
+                </div>
+                <div class="form-group">
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="switch-label">Enable SMS Alerts</span>
+                </div>
+                <button type="submit" class="btn">Save Preferences</button>
+            </form>
+        </div>
+
+        <div class="settings-section">
+            <h2>Subscription</h2>
+            <span class="plan-badge">Premium Plan</span>
+            <button class="btn-secondary">Manage Subscription</button>
+        </div>
+
+        <div class="danger-zone">
+            <h2 style="color:#e74c3c;">Danger Zone</h2>
+            <p>Delete your account and all associated data. This action cannot be undone.</p>
+            <button class="btn-danger">Delete Account</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 LearnOnline. All rights reserved.</p>
+        <p>Follow us on:
+            <a href="https://www.facebook.com" target="_blank">Facebook</a>
+            <a href="https://www.twitter.com" target="_blank">Twitter</a>
+            <a href="https://www.instagram.com" target="_blank">Instagram</a>
+        </p>
+    </footer>
+</body>
+</html>

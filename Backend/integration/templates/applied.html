@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applied Courses | LearnOnline</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:600,400&display=swap" rel="stylesheet">
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+            background: linear-gradient(120deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #222;
+            min-height: 100vh;
+            margin: 0;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            padding: 1.5rem 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-radius: 8px;
+        }
+        .logo h1 {
+            font-size: 2.4rem;
+            color: #2d6cdf;
+            letter-spacing: 1.2px;
+            font-weight: 800;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            transition: transform 0.3s, background 0.3s, color 0.3s;
+        }
+        .nav-links li a.active,
+        .nav-links li a:hover {
+            background: #2d6cdf;
+            color: #fff;
+            transform: scale(1.1);
+        }
+        .login-btn a {
+            background: #2d6cdf;
+            color: #fff;
+            padding: 0.8rem 1.6rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 4px 12px rgba(45, 108, 223, 0.15);
+        }
+        .login-btn a:hover {
+            background: #1b4173;
+            transform: scale(1.1);
+        }
+        main {
+            max-width: 1200px;
+            margin: 3rem auto 2rem auto;
+            padding: 0 1rem;
+        }
+        .applied-title {
+            text-align: center;
+            font-size: 2.3rem;
+            color: #2d6cdf;
+            font-weight: 800;
+            margin-bottom: 2.2rem;
+            letter-spacing: 1px;
+        }
+        .applied-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
+            list-style: none;
+            padding: 0;
+        }
+        .applied-card {
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 8px 32px rgba(45, 108, 223, 0.13), 0 1.5px 8px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.22s, box-shadow 0.22s;
+            overflow: hidden;
+            min-height: 440px;
+            position: relative;
+        }
+        .applied-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 7px;
+            background: linear-gradient(90deg, #2d6cdf 60%, #5e9cff 100%);
+            z-index: 1;
+        }
+        .applied-thumb {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 22px 22px 0 0;
+            box-shadow: 0 2px 12px rgba(45, 108, 223, 0.09);
+            transition: filter 0.3s;
+            filter: brightness(0.97) saturate(1.1);
+        }
+        .applied-card:hover .applied-thumb {
+            filter: brightness(1.05) saturate(1.2) drop-shadow(0 4px 16px #2d6cdf33);
+        }
+        .applied-title-course {
+            margin: 22px 0 12px 0;
+            font-size: 1.22rem;
+            font-weight: 800;
+            text-align: center;
+            color: #1b4173;
+            min-height: 48px;
+            padding: 0 1.2rem;
+            letter-spacing: 0.5px;
+        }
+        .applied-meta {
+            font-size: 0.98rem;
+            color: #5e9cff;
+            margin-bottom: 10px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+        .applied-actions {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            align-items: center;
+            margin-top: auto;
+            margin-bottom: 22px;
+        }
+        .applied-actions button {
+            border: none;
+            outline: none;
+            padding: 0.8rem 1.7rem;
+            border-radius: 10px;
+            font-size: 1.07rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.18s, color 0.18s, transform 0.18s, box-shadow 0.18s;
+            background: linear-gradient(90deg, #2d6cdf 60%, #5e9cff 100%);
+            color: #fff;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(45, 108, 223, 0.10);
+            letter-spacing: 0.5px;
+        }
+        .applied-actions button:hover {
+            background: linear-gradient(90deg, #1b4173 60%, #2d6cdf 100%);
+            transform: scale(1.09);
+            box-shadow: 0 4px 16px #2d6cdf33;
+        }
+        .watch-progress {
+            margin: 10px 0 0 0;
+            width: 90%;
+            background: #e3eafc;
+            border-radius: 8px;
+            height: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+        .watch-progress-bar {
+            background: linear-gradient(90deg, #2d6cdf 60%, #5e9cff 100%);
+            height: 100%;
+            border-radius: 8px;
+            transition: width 0.4s;
+        }
+        .watch-progress-label {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            font-size: 0.95rem;
+            color: #1b4173;
+            font-weight: 700;
+            line-height: 18px;
+        }
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0; top: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.55);
+            justify-content: center;
+            align-items: center;
+        }
+        .video-modal.active {
+            display: flex;
+        }
+        .video-modal-content {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(45, 108, 223, 0.18);
+            position: relative;
+            max-width: 700px;
+            width: 95vw;
+        }
+        .video-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            font-size: 2rem;
+            color: #2d6cdf;
+            cursor: pointer;
+            font-weight: 800;
+            background: none;
+            border: none;
+        }
+        @media (max-width: 900px) {
+            .applied-list {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+        }
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1.2rem 1.5rem;
+                gap: 1rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            main {
+                padding: 0 0.5rem;
+            }
+            .applied-title {
+                font-size: 1.5rem;
+            }
+            .applied-list {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .applied-thumb {
+                height: 130px;
+            }
+            .applied-card {
+                min-height: 340px;
+            }
+        }
+        footer {
+            background: #fff;
+            color: #222;
+            text-align: center;
+            padding: 2rem 1rem 1.5rem 1rem;
+            border-radius: 12px 12px 0 0;
+            margin-top: 3rem;
+            box-shadow: 0 -2px 16px rgba(45, 108, 223, 0.07);
+            font-size: 1.05rem;
+        }
+        footer p {
+            margin-bottom: 0.7rem;
+        }
+        footer a {
+            color: #2d6cdf;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        footer a:hover {
+            color: #1b4173;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <h1>LearnOnline</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{url_for('home')}}">Home</a></li>
+            <li><a href="{{ url_for('courses') }}" >Courses</a></li>
+            <li><a href="{{ url_for('applied') }}" class= active>Applied Courses</a></li>
+            <li><a href="{{ url_for('about') }}">About Us</a></li>
+            <li><a href="{{ url_for('setting') }}">Settings</a></li>
+        </ul>
+        <div class="login-btn">
+            <a href="{{ url_for('login') }}">Login</a>
+        </div>
+    </nav>
+    <main>
+        <div class="applied-title">Your Applied Courses</div>
+        <ul class="applied-list" id="applied-list">
+            <!-- Dynamically rendered -->
+        </ul>
+    </main>
+    <div class="video-modal" id="video-modal">
+        <div class="video-modal-content">
+            <button class="video-modal-close" id="video-modal-close" title="Close">&times;</button>
+            <div id="video-player-container"></div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 LearnOnline. All rights reserved.</p>
+        <p>Follow us on:
+            <a href="https://www.facebook.com" target="_blank">Facebook</a>
+            <a href="https://www.twitter.com" target="_blank">Twitter</a>
+            <a href="https://www.instagram.com" target="_blank">Instagram</a>
+        </p>
+    </footer>
+    <script>
+    // --- Course Data ---
+    const COURSE_DATA = [
+        {
+            id: 'html',
+            title: 'HTML Full Course - Build a Website Tutorial',
+            meta: 'Beginner · 5h 30m',
+            duration: 5.5 * 60 * 60, // seconds
+            thumb: 'https://img.youtube.com/vi/pQN-pnXPaVg/hqdefault.jpg',
+            ytId: 'pQN-pnXPaVg'
+        },
+        {
+            id: 'css',
+            title: 'CSS Crash Course For Beginners',
+            meta: 'Beginner · 1h 20m',
+            duration: 1.33 * 60 * 60,
+            thumb: 'https://img.youtube.com/vi/yfoY53QXEnI/hqdefault.jpg',
+            ytId: 'yfoY53QXEnI'
+        },
+        {
+            id: 'js',
+            title: 'JavaScript Full Course (2023)',
+            meta: 'Beginner · 8h 30m',
+            duration: 8.5 * 60 * 60,
+            thumb: 'https://img.youtube.com/vi/PkZNo7MFNFg/hqdefault.jpg',
+            ytId: 'PkZNo7MFNFg'
+        },
+        {
+            id: 'react',
+            title: 'React JS Crash Course',
+            meta: 'Intermediate · 2h 10m',
+            duration: 2.17 * 60 * 60,
+            thumb: 'https://img.youtube.com/vi/w7ejDZ8SWv8/hqdefault.jpg',
+            ytId: 'w7ejDZ8SWv8'
+        },
+        {
+            id: 'node',
+            title: 'Node.js Tutorial for Beginners',
+            meta: 'Beginner · 2h 30m',
+            duration: 2.5 * 60 * 60,
+            thumb: 'https://img.youtube.com/vi/TlB_eWDSMt4/hqdefault.jpg',
+            ytId: 'TlB_eWDSMt4'
+        },
+        {
+            id: 'python',
+            title: 'Python Full Course - Learn Python in 12 Hours',
+            meta: 'Beginner · 12h',
+            duration: 12 * 60 * 60,
+            thumb: 'https://img.youtube.com/vi/_uQrJ0TkZlc/hqdefault.jpg',
+            ytId: '_uQrJ0TkZlc'
+        }
+        // ... add more as needed
+    ];
+
+    // --- LocalStorage Helpers ---
+    function getAppliedCourses() {
+        try {
+            return JSON.parse(localStorage.getItem('appliedCourses')) || [];
+        } catch {
+            return [];
+        }
+    }
+    function setAppliedCourses(arr) {
+        localStorage.setItem('appliedCourses', JSON.stringify(arr));
+    }
+    function getWatchTimes() {
+        try {
+            return JSON.parse(localStorage.getItem('watchTimes')) || {};
+        } catch {
+            return {};
+        }
+    }
+    function setWatchTimes(obj) {
+        localStorage.setItem('watchTimes', JSON.stringify(obj));
+    }
+
+    // --- Handle Apply from Query String ---
+    function handleApplyFromQuery() {
+        const params = new URLSearchParams(window.location.search);
+        const courseId = params.get('apply');
+        if (courseId && COURSE_DATA.find(c => c.id === courseId)) {
+            let applied = getAppliedCourses();
+            if (!applied.includes(courseId)) {
+                applied.push(courseId);
+                setAppliedCourses(applied);
+            }
+            // Remove ?apply=... from URL
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    }
+
+    // --- Render Applied Courses ---
+    function renderAppliedCourses() {
+        const applied = getAppliedCourses();
+        const watchTimes = getWatchTimes();
+        const list = document.getElementById('applied-list');
+        list.innerHTML = '';
+        if (!applied.length) {
+            list.innerHTML = `<li style="text-align:center;font-size:1.2rem;color:#888;">You haven't applied to any courses yet.</li>`;
+            return;
+        }
+        applied.forEach(courseId => {
+            const course = COURSE_DATA.find(c => c.id === courseId);
+            if (!course) return;
+            const watched = watchTimes[courseId] || 0;
+            const percent = Math.min(100, Math.round((watched / course.duration) * 100));
+            const watchedLabel = `${formatTime(watched)} / ${formatTime(course.duration)}`;
+            const card = document.createElement('li');
+            card.className = 'applied-card';
+            card.innerHTML = `
+                <img class="applied-thumb" src="${course.thumb}" alt="${course.title}">
+                <div class="applied-title-course">${course.title}</div>
+                <div class="applied-meta">${course.meta}</div>
+                <div class="watch-progress">
+                    <div class="watch-progress-bar" style="width:${percent}%;"></div>
+                    <span class="watch-progress-label">${watchedLabel}</span>
+                </div>
+                <div class="applied-actions">
+                    <button data-course="${course.id}">Watch Video</button>
+                </div>
+            `;
+            list.appendChild(card);
+        });
+        // Attach event listeners for watch buttons
+        document.querySelectorAll('.applied-actions button').forEach(btn => {
+            btn.onclick = function() {
+                openVideoModal(this.getAttribute('data-course'));
+            };
+        });
+    }
+
+    // --- Format Time Helper ---
+    function formatTime(sec) {
+        sec = Math.round(sec);
+        if (sec < 60) return `${sec}s`;
+        const m = Math.floor(sec / 60);
+        const s = sec % 60;
+        if (m < 60) return `${m}m${s>0?' '+s+'s':''}`;
+        const h = Math.floor(m / 60);
+        const mm = m % 60;
+        return `${h}h${mm>0?' '+mm+'m':''}${s>0?' '+s+'s':''}`;
+    }
+
+    // --- Video Modal Logic ---
+    let currentPlayer = null;
+    let currentCourseId = null;
+    let ytAPIReady = false;
+    let watchInterval = null;
+    let lastPlayerTime = 0;
+
+    function openVideoModal(courseId) {
+        const course = COURSE_DATA.find(c => c.id === courseId);
+        if (!course) return;
+        currentCourseId = courseId;
+        document.getElementById('video-modal').classList.add('active');
+        // Insert player container
+        document.getElementById('video-player-container').innerHTML = `<div id="ytplayer"></div>`;
+        if (ytAPIReady) {
+            loadPlayer(course.ytId, getWatchTimes()[courseId] || 0);
+        } else {
+            // Will auto-load when API ready
+        }
+    }
+    function closeVideoModal() {
+        document.getElementById('video-modal').classList.remove('active');
+        if (currentPlayer) {
+            currentPlayer.destroy();
+            currentPlayer = null;
+        }
+        clearInterval(watchInterval);
+        watchInterval = null;
+        currentCourseId = null;
+    }
+    document.getElementById('video-modal-close').onclick = closeVideoModal;
+    document.getElementById('video-modal').onclick = function(e) {
+        if (e.target === this) closeVideoModal();
+    };
+
+    // --- YouTube API ---
+    function loadYouTubeAPI() {
+        if (window.YT && window.YT.Player) {
+            ytAPIReady = true;
+            return;
+        }
+        let tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.body.appendChild(tag);
+        window.onYouTubeIframeAPIReady = function() {
+            ytAPIReady = true;
+        };
+    }
+    function loadPlayer(ytId, startSeconds) {
+        if (currentPlayer) currentPlayer.destroy();
+        currentPlayer = new YT.Player('ytplayer', {
+            height: '390',
+            width: '640',
+            videoId: ytId,
+            playerVars: {
+                autoplay: 1,
+                controls: 1,
+                start: Math.floor(startSeconds || 0)
+            },
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+    function onPlayerReady(event) {
+        lastPlayerTime = event.target.getCurrentTime();
+        // Start tracking watch time every second
+        clearInterval(watchInterval);
+        watchInterval = setInterval(trackWatchTime, 1000);
+    }
+    function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+            clearInterval(watchInterval);
+            watchInterval = null;
+            trackWatchTime(); // Save immediately
+        } else if (event.data === YT.PlayerState.PLAYING) {
+            clearInterval(watchInterval);
+            watchInterval = setInterval(trackWatchTime, 1000);
+        }
+    }
+    function trackWatchTime() {
+        if (!currentPlayer || !currentCourseId) return;
+        let t = currentPlayer.getCurrentTime();
+        let watched = getWatchTimes();
+        // Only count forward progress
+        if (!watched[currentCourseId]) watched[currentCourseId] = 0;
+        if (t > watched[currentCourseId]) {
+            watched[currentCourseId] = t;
+            setWatchTimes(watched);
+            renderAppliedCourses();
+        }
+        lastPlayerTime = t;
+    }
+
+    // --- DEMO: Pre-populate some applied courses if none exist ---
+    (function demoPrepopulate() {
+        if (!localStorage.getItem('appliedCourses')) {
+            setAppliedCourses(['html', 'js', 'python']);
+            setWatchTimes({
+                'html': 120,
+                'js': 450,
+                'python': 0
+            });
+        }
+    })();
+
+    // --- On page load ---
+    handleApplyFromQuery();
+    renderAppliedCourses();
+    window.addEventListener('DOMContentLoaded', loadYouTubeAPI);
+    </script>
+</body>
+</html>
