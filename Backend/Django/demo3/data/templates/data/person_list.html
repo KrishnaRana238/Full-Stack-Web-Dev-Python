@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Person list</title>
+    </head>
+    <body>
+        <h1>Person List </h1>
+        <ul>
+            {% for person in people %}
+            <li>{{person.name}} {{person.age}}</li>
+            {%empty%}
+            <li> no people found</li>
+            {% endfor %}
+
+        </ul>
+
+    </body>
+    </html>

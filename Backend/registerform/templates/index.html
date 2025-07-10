@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+    </head>
+    <body bgcolor="pink">
+        <h1> Welcome to dashboard</h1>
+        <h3>{{msg}}</h3>
+        <a href="{{ url_for("login") }}">logout</a>
+
+        <input placeholder="Enter something..." id = "text">
+        <button onclick="speechSynthesis.speak(new SpeechSynthesisUtterance(text.value))">🔉</button>
+    </body>
+    </html>

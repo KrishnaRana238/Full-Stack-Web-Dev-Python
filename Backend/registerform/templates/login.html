@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+    </head>
+    <body bgcolor="pink">
+        <h1> Login here</h1>
+        <form action="#" method="POST">
+            
+            
+            
+
+             {{ login_form.hidden_tag() }}
+            <label for="username">Username or Email:</label>
+            {{ login_form.username(id="username") }}
+            <label for="password">Password:</label>
+            {{ login_form.password(id="password") }}
+            {{ login_form.submit() }}
+        </form>
+
+    </body>
+    </html>

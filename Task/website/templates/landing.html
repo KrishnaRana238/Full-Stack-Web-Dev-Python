@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Learn Online - Modern Education Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary: #ff4e50;
+            --secondary: #f9d423;
+            --accent: #1cd8d2;
+            --dark: #22223b;
+            --light: #fff;
+            --radius: 20px;
+            --shadow: 0 8px 32px 0 rgba(255,78,80,0.10);
+            --transition: 0.25s cubic-bezier(.4,0,.2,1);
+        }
+        html, body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #f9d423 0%, #ff4e50 100%);
+            color: var(--dark);
+            min-height: 100vh;
+        }
+        header {
+            background: var(--light);
+            box-shadow: 0 2px 16px 0 rgba(255,78,80,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            min-height: 70px;
+        }
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary);
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo::before {
+            content: '';
+            display: inline-block;
+            width: 36px; height: 36px;
+            background: url('https://cdn.jsdelivr.net/gh/tabler/tabler-icons/icons/school.svg') no-repeat center/contain;
+            margin-right: 8px;
+            opacity: 0.92;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+        }
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.08rem;
+            padding: 8px 0;
+            position: relative;
+            transition: color var(--transition);
+        }
+        .nav-links a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+            transition: width var(--transition);
+            position: absolute;
+            left: 0; bottom: -4px;
+        }
+        .nav-links a:hover, .nav-links a:focus { color: var(--primary);}
+        .nav-links a:hover::after, .nav-links a:focus::after { width: 100%; }
+        .login-btn {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            color: #fff;
+            border: none;
+            border-radius: var(--radius);
+            padding: 10px 32px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: background var(--transition), transform var(--transition);
+            letter-spacing: 0.03em;
+        }
+        .login-btn:hover { background: var(--accent); transform: translateY(-2px) scale(1.04);}
+        /* Hero Section */
+        .hero {
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            text-align: center;
+            background: linear-gradient(120deg, #ff4e50 0%, #f9d423 100%);
+            color: #fff;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            background: url('https://www.transparenttextures.com/patterns/diamond-upholstery.png');
+            opacity: 0.09;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding-top: 120px;
+            padding-bottom: 60px;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+        .hero-title {
+            font-size: 3.4rem;
+            font-weight: 900;
+            margin-bottom: 22px;
+            letter-spacing: 1px;
+            line-height: 1.13;
+            text-shadow: 0 4px 32px rgba(0,0,0,0.10);
+            animation: fadeInDown 1s cubic-bezier(.4,0,.2,1);
+        }
+        .hero-desc {
+            font-size: 1.45rem;
+            margin-bottom: 38px;
+            animation: fadeInUp 1.2s cubic-bezier(.4,0,.2,1);
+            color: #fffbe7;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .cta-btn {
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            color: #fff;
+            border: none;
+            border-radius: var(--radius);
+            padding: 18px 54px;
+            font-size: 1.22rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: background var(--transition), color var(--transition), transform var(--transition);
+            animation: fadeIn 1.5s;
+            letter-spacing: 0.04em;
+        }
+        .cta-btn:hover { background: var(--primary); color: #fff; transform: scale(1.06);}
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.22;
+            pointer-events: none;
+            animation: float 8s infinite linear;
+            filter: blur(2px);
+        }
+        @keyframes float {
+            0% { transform: translateY(0);}
+            50% { transform: translateY(-40px);}
+            100% { transform: translateY(0);}
+        }
+        @keyframes fadeInDown {
+            0% { opacity: 0; transform: translateY(-40px);}
+            100% { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(40px);}
+            100% { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0;}
+            100% { opacity: 1;}
+        }
+        section[id]::before {
+            content: '';
+            display: block;
+            height: 80px;
+            margin-top: -80px;
+            visibility: hidden;
+        }
+        /* Why Choose Us */
+        .why-choose {
+            max-width: 1300px;
+            margin: 80px auto 0 auto;
+            display: flex;
+            gap: 2.2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .choose-card {
+            background: var(--light);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1.5px solid #ffe3e3;
+            padding: 38px 30px;
+            flex: 1 1 260px;
+            min-width: 260px;
+            max-width: 340px;
+            text-align: center;
+            transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+            cursor: pointer;
+            margin-bottom: 28px;
+        }
+        .choose-card:hover {
+            transform: translateY(-10px) scale(1.045);
+            box-shadow: 0 12px 36px 0 rgba(255,78,80,0.13);
+            background: #fffbe7;
+        }
+        .choose-icon {
+            font-size: 2.7rem;
+            margin-bottom: 18px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 48px;
+        }
+        .choose-title {
+            font-size: 1.28rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        .choose-desc {
+            font-size: 1.08rem;
+            color: #3b4252;
+        }
+        /* Carousel */
+        .carousel {
+            max-width: 950px;
+            margin: 70px auto 0 auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius);
+            background: var(--light);
+            box-shadow: var(--shadow);
+            border: 1.5px solid #ffe3e3;
+            padding: 44px 0;
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(.4,0,.2,1);
+        }
+        .carousel-item {
+            min-width: 100%;
+            text-align: center;
+            opacity: 0.7;
+            transition: opacity var(--transition);
+            padding: 0 36px;
+        }
+        .carousel-item.active { opacity: 1; }
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            left: 0; right: 0;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        .carousel-btn {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 48px; height: 48px;
+            font-size: 1.6rem;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            pointer-events: all;
+            transition: background var(--transition), transform var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .carousel-btn:hover { background: var(--accent); transform: scale(1.12);}
+        /* Testimonials */
+        .testimonials {
+            max-width: 950px;
+            margin: 70px auto 0 auto;
+            display: flex;
+            gap: 2.2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .testimonial-card {
+            background: var(--light);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1.5px solid #ffe3e3;
+            padding: 32px 26px;
+            flex: 1 1 260px;
+            min-width: 260px;
+            max-width: 340px;
+            text-align: center;
+            position: relative;
+            animation: fadeInUp 1s;
+            margin-bottom: 28px;
+        }
+        .testimonial-quote {
+            font-size: 1.13rem;
+            color: #2e3a4b;
+            margin-bottom: 18px;
+            font-style: italic;
+        }
+        .testimonial-user {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.04rem;
+        }
+        /* Features Showcase */
+        .features {
+            max-width: 1300px;
+            margin: 70px auto 0 auto;
+            display: flex;
+            gap: 2.2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .feature-card {
+            background: var(--light);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1.5px solid #ffe3e3;
+            padding: 32px 22px;
+            flex: 1 1 220px;
+            min-width: 220px;
+            max-width: 300px;
+            text-align: center;
+            transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+            margin-bottom: 28px;
+        }
+        .feature-card:hover {
+            transform: translateY(-8px) scale(1.035);
+            box-shadow: 0 8px 24px 0 rgba(255,78,80,0.10);
+            background: #fffbe7;
+        }
+        .feature-icon {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 38px;
+        }
+        .feature-title {
+            font-size: 1.18rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        .feature-desc {
+            font-size: 1.03rem;
+            color: #3b4252;
+        }
+        /* Statistics Counter */
+        .stats {
+            max-width: 1100px;
+            margin: 70px auto 0 auto;
+            display: flex;
+            gap: 2.2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .stat-card {
+            background: var(--light);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1.5px solid #ffe3e3;
+            padding: 38px 22px;
+            flex: 1 1 180px;
+            min-width: 180px;
+            max-width: 220px;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .stat-number {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 10px;
+            transition: color var(--transition);
+        }
+        .stat-label {
+            font-size: 1.08rem;
+            color: #3b4252;
+        }
+        /* Newsletter */
+        .newsletter {
+            max-width: 650px;
+            margin: 70px auto 0 auto;
+            background: var(--light);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1.5px solid #ffe3e3;
+            padding: 44px 34px;
+            text-align: center;
+        }
+        .newsletter-title {
+            font-size: 1.32rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: var(--primary);
+        }
+        .newsletter-form {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            margin-top: 18px;
+        }
+        .newsletter-input {
+            padding: 14px 20px;
+            border-radius: var(--radius);
+            border: 1.5px solid #ffd6d6;
+            font-size: 1.08rem;
+            outline: none;
+            flex: 1 1 200px;
+            transition: border var(--transition);
+            background: #fffbe7;
+        }
+        .newsletter-input:focus { border: 1.5px solid var(--primary);}
+        .newsletter-btn {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            color: #fff;
+            border: none;
+            border-radius: var(--radius);
+            padding: 14px 32px;
+            font-size: 1.08rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: background var(--transition), transform var(--transition);
+        }
+        .newsletter-btn:hover { background: var(--accent); transform: scale(1.04);}
+        .newsletter-success {
+            color: #1cd8d2;
+            font-weight: 700;
+            margin-top: 16px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .newsletter-success.active { opacity: 1;}
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 36px;
+            right: 36px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 60px; height: 60px;
+            font-size: 2.2rem;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background var(--transition), transform var(--transition);
+            animation: fadeIn 1.5s;
+        }
+        .fab:hover { background: var(--accent); transform: scale(1.10);}
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .why-choose, .features, .testimonials, .stats { flex-direction: column; align-items: center;}
+            .carousel { padding: 28px 0;}
+            .nav { padding: 0 16px;}
+        }
+        @media (max-width: 700px) {
+            .nav { flex-direction: column; gap: 1.2rem; padding: 0 6px;}
+            .hero-title { font-size: 2rem;}
+            .hero-desc { font-size: 1.08rem;}
+            .choose-card, .feature-card, .testimonial-card, .stat-card { min-width: 92vw; max-width: 99vw;}
+            .newsletter { padding: 20px 6px;}
+            .fab { right: 10px; bottom: 10px;}
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="nav">
+            <div class="logo">LearnOnline</div>
+            <div class="nav-links">
+                <a href="#why">Why Us</a>
+                <a href="#features">Features</a>
+                <a href="#courses">Courses</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#stats">Stats</a>
+                <a href="#newsletter">Newsletter</a>
+            </div>
+            <button class="login-btn" onclick="window.location.href='login.html'">Login</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title animate__animated animate__fadeInDown">Empower Your Future with Modern Online Learning</h1>
+            <p class="hero-desc animate__animated animate__fadeInUp">
+                Join thousands of learners and access high-quality courses, expert instructors, and a vibrant community. Start your journey to success today!
+            </p>
+            <a href="#courses" class="cta-btn animate__animated animate__fadeIn">Get Started</a>
+        </div>
+        <!-- Decorative Particles -->
+        <span class="particle" style="top:10%;left:8%;width:60px;height:60px;background:var(--primary);animation-delay:0s;"></span>
+        <span class="particle" style="top:70%;left:12%;width:40px;height:40px;background:var(--accent);animation-delay:1.2s;"></span>
+        <span class="particle" style="top:30%;left:80%;width:50px;height:50px;background:var(--primary);animation-delay:2.1s;"></span>
+        <span class="particle" style="top:80%;left:70%;width:30px;height:30px;background:var(--accent);animation-delay:0.7s;"></span>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose" id="why">
+        <div class="choose-card">
+            <div class="choose-icon"><i class='bx bx-chalkboard'></i></div>
+            <div class="choose-title">Expert Instructors</div>
+            <div class="choose-desc">Learn from industry professionals with real-world experience and a passion for teaching.</div>
+        </div>
+        <div class="choose-card">
+            <div class="choose-icon"><i class='bx bx-laptop'></i></div>
+            <div class="choose-title">Flexible Learning</div>
+            <div class="choose-desc">Access courses anytime, anywhere, and learn at your own pace with our intuitive platform.</div>
+        </div>
+        <div class="choose-card">
+            <div class="choose-icon"><i class='bx bx-certification'></i></div>
+            <div class="choose-title">Certification</div>
+            <div class="choose-desc">Earn recognized certificates to showcase your skills and boost your career opportunities.</div>
+        </div>
+        <div class="choose-card">
+            <div class="choose-icon"><i class='bx bx-support'></i></div>
+            <div class="choose-title">24/7 Support</div>
+            <div class="choose-desc">Get help whenever you need it from our dedicated support team and active community.</div>
+        </div>
+    </section>
+
+    <!-- Features Showcase -->
+    <section class="features" id="features">
+        <div class="feature-card">
+            <div class="feature-icon"><i class='bx bx-video'></i></div>
+            <div class="feature-title">HD Video Content</div>
+            <div class="feature-desc">Crystal-clear video lectures for an immersive learning experience.</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class='bx bx-book-open'></i></div>
+            <div class="feature-title">Comprehensive Materials</div>
+            <div class="feature-desc">Downloadable resources, quizzes, and assignments for every course.</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class='bx bx-group'></i></div>
+            <div class="feature-title">Community Forums</div>
+            <div class="feature-desc">Engage with peers, ask questions, and collaborate on projects.</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class='bx bx-mobile-alt'></i></div>
+            <div class="feature-title">Mobile Friendly</div>
+            <div class="feature-desc">Learn on the go with our fully responsive and mobile-optimized platform.</div>
+        </div>
+    </section>
+
+    <!-- Courses Carousel -->
+    <section class="carousel" id="courses">
+        <div class="carousel-inner" id="carousel-inner">
+            <div class="carousel-item active">
+                <h3>Web Development Bootcamp</h3>
+                <p>Master HTML, CSS, JavaScript, and modern frameworks. Build real-world projects and launch your career as a web developer.</p>
+            </div>
+            <div class="carousel-item">
+                <h3>Data Science & AI</h3>
+                <p>Learn Python, machine learning, and data visualization. Analyze data and build intelligent applications.</p>
+            </div>
+            <div class="carousel-item">
+                <h3>Digital Marketing Mastery</h3>
+                <p>Grow your brand with SEO, social media, and analytics. Become a digital marketing expert.</p>
+            </div>
+            <div class="carousel-item">
+                <h3>UI/UX Design</h3>
+                <p>Design stunning interfaces and seamless user experiences. Learn Figma, prototyping, and usability testing.</p>
+            </div>
+        </div>
+        <div class="carousel-controls">
+            <button class="carousel-btn" id="prev"><i class='bx bx-chevron-left'></i></button>
+            <button class="carousel-btn" id="next"><i class='bx bx-chevron-right'></i></button>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="testimonial-card">
+            <div class="testimonial-quote">"This platform transformed my career. The courses are practical and the instructors are amazing!"</div>
+            <div class="testimonial-user">- Priya Sharma</div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-quote">"I love the flexibility and the community support. Highly recommended for anyone wanting to upskill."</div>
+            <div class="testimonial-user">- Rahul Verma</div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-quote">"The certification helped me land my dream job. Thank you for such a wonderful learning experience!"</div>
+            <div class="testimonial-user">- Anjali Gupta</div>
+        </div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="stats" id="stats">
+        <div class="stat-card">
+            <div class="stat-number" data-count="12000">0</div>
+            <div class="stat-label">Active Learners</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" data-count="150">0</div>
+            <div class="stat-label">Expert Instructors</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" data-count="350">0</div>
+            <div class="stat-label">Courses</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" data-count="98">0</div>
+            <div class="stat-label">Success Rate (%)</div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter" id="newsletter">
+        <div class="newsletter-title">Subscribe to Our Newsletter</div>
+        <div>Get the latest updates, course launches, and exclusive offers straight to your inbox.</div>
+        <form class="newsletter-form" id="newsletter-form">
+            <input type="email" class="newsletter-input" id="newsletter-email" placeholder="Enter your email" required>
+            <button type="submit" class="newsletter-btn">Subscribe</button>
+        </form>
+        <div class="newsletter-success" id="newsletter-success">Thank you for subscribing!</div>
+    </section>
+
+    <!-- Floating Action Button -->
+    <button class="fab" title="Contact Us"><i class='bx bx-message-dots'></i></button>
+
+    <script>
+        // Carousel functionality
+        const carouselInner = document.getElementById('carousel-inner');
+        const items = carouselInner.querySelectorAll('.carousel-item');
+        let current = 0;
+        function showItem(idx) {
+            items.forEach((item, i) => {
+                item.classList.toggle('active', i === idx);
+            });
+            carouselInner.style.transform = `translateX(-${idx * 100}%)`;
+        }
+        document.getElementById('prev').onclick = () => {
+            current = (current - 1 + items.length) % items.length;
+            showItem(current);
+        };
+        document.getElementById('next').onclick = () => {
+            current = (current + 1) % items.length;
+            showItem(current);
+        };
+        // Auto-advance carousel
+        setInterval(() => {
+            current = (current + 1) % items.length;
+            showItem(current);
+        }, 6000);
+
+        // Stats counter animation
+        function animateCount(el, to) {
+            let start = 0;
+            const duration = 1200;
+            const step = Math.ceil(to / (duration / 16));
+            function update() {
+                start += step;
+                if (start >= to) {
+                    el.textContent = to.toLocaleString();
+                } else {
+                    el.textContent = start.toLocaleString();
+                    requestAnimationFrame(update);
+                }
+            }
+            update();
+        }
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.stat-number').forEach(el => {
+                animateCount(el, parseInt(el.dataset.count));
+            });
+        });
+
+        // Newsletter form
+        document.getElementById('newsletter-form').onsubmit = function(e) {
+            e.preventDefault();
+            document.getElementById('newsletter-success').classList.add('active');
+            setTimeout(() => {
+                document.getElementById('newsletter-success').classList.remove('active');
+                document.getElementById('newsletter-email').value = '';
+            }, 2500);
+        };
+    </script>
+</body>
+</html>

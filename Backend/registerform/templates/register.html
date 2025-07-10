@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>register</title>
+    </head>
+    <body bgcolor="pink">
+        <h1> Register here</h1>
+        <form action="#" method="POST">
+             {{ register_form.hidden_tag() }}
+                <label for="regUsername">Username:</label>
+                {{ register_form.regUsername(id="name") }}
+                <label for="regEmail">Email:</label>
+             {{ register_form.regEmail(id="email") }}
+            <label for="regPassword">Password:</label>
+            {{ register_form.regPassword(id="pass") }}
+             {{ register_form.submit() }}
+
+
+            
+        </form>
+
+    </body>
+    </html>

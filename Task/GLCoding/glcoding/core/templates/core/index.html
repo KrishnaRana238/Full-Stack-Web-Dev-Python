@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GL Coding Classes | Home</title>
+  <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">GL Coding Classes</div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Courses</a></li>
+        <li><a href="#">Community</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#" class="btn-login">Login</a></li>
+        <li><a href="#" class="btn-trial">Start Free Trial</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Make Coding Fun for Kids!</h1>
+      <p>Interactive lessons, real projects, and live classes for ages 7–16.</p>
+      <a href="#" class="btn-primary">Start Free Trial</a>
+      <a href="#" class="btn-secondary">View Courses</a>
+    </div>
+    <div class="hero-image">
+      <img src="{% static 'core/images/hero-animation.gif' %}" alt="Kids Coding" />
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <h2>Why Choose GL Coding?</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <img src="{% static 'core/images/live-class.png' %}" alt="">
+        <h3>Live Classes</h3>
+        <p>Learn in real-time from experienced instructors.</p>
+      </div>
+      <div class="feature-card">
+        <img src="{% static 'core/images/projects.png' %}" alt="">
+        <h3>Projects</h3>
+        <p>Create games, websites, and animations by yourself!</p>
+      </div>
+      <div class="feature-card">
+        <img src="{% static 'core/images/progress.png' %}" alt="">
+        <h3>Progress Tracking</h3>
+        <p>Track your child’s learning step-by-step.</p>
+      </div>
+      <div class="feature-card">
+        <img src="{% static 'core/images/gamified.png' %}" alt="">
+        <h3>Gamified Learning</h3>
+        <p>Earn points, badges, and unlock levels as you learn!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <h2>What Parents & Kids Say</h2>
+    <div class="testimonial-slider">
+      <div class="testimonial">
+        <p>“GL Coding made my son excited about programming! He built his first game in a week.”</p>
+        <h4>👩‍💻 Priya Sharma, Parent</h4>
+      </div>
+      <div class="testimonial">
+        <p>“I love earning badges! My favorite part is the coding challenges!”</p>
+        <h4>🧒 Aarav, Student (Age 11)</h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta">
+    <h2>Ready to start your child’s coding journey?</h2>
+    <a href="#" class="btn-primary">Start Free Trial</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 GL Coding Classes. All rights reserved.</p>
+  </footer>
+
+  <script src="{% static 'core/js/script.js' %}"></script>
+</body>
+</html>
