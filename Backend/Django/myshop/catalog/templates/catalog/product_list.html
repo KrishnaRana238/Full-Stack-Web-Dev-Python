@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Catalog</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+  <h1>🛒 Product Catalog</h1>
+  <div style="text-align:center; margin-bottom: 20px;">
+    <a href="{% url 'product_add' %}" class="btn btn-add"> Add Product</a>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in products %}
+      <tr>
+        <td>{{ product.category.name }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>₹{{ product.price }}</td>
+        <td>
+          <a href="{% url 'product_edit' product.pk %}" class="btn btn-edit"> Edit</a>
+          <a href="{% url 'product_delete' product.pk %}" class="btn btn-delete" onclick="confirmDelete(event, '{{ product.name }}')">🗑️ Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
